@@ -85,7 +85,7 @@ const Header = () => {
               : 'max-h-0'
           }`}
         >
-          <nav className='flex flex-col space-y-4 container mx-auto'>
+          <nav className='flex flex-col space-y-4 container mx-auto px-4'>
             <a
               href='#home'
               className='text-foreground hover:text-eco-green transition-colors'
