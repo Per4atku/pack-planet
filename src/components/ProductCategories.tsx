@@ -17,7 +17,7 @@ const ProductCategories = () => {
       color: 'from-green-100 to-green-200'
     },
     {
-      title: 'Туалетная бумага и одноразовые полотенца',
+      title: 'Бумажная продукция',
       description: 'Профессиональные гигиенические товары',
       icon: '🧻',
       color: 'from-purple-100 to-purple-200'
