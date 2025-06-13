@@ -38,7 +38,7 @@ async function importFullCatalog(tree: any, req: PayloadRequest) {
 
 async function importTree(
   node: any,
-  parentCategoryId: string | null = null,
+  parentCategoryId: number | null = null,
   req: PayloadRequest
 ) {
   for (const [key, value] of Object.entries(node)) {
@@ -59,7 +59,7 @@ async function importTree(
         collection: 'categories' as CollectionSlug,
         data: {
           name: key,
-          category: parentCategoryId as CollectionSlug
+          category: parentCategoryId
         }
       });
 

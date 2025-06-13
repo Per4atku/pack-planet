@@ -16,7 +16,10 @@ type CategoryNode = {
 
 export default function parseExcel(buffer: Buffer): CategoryNode {
   const workbook = read(buffer, { type: 'buffer' });
-  const sheet = workbook.Sheets[workbook.SheetNames[0]];
+  const sheet = workbook.Sheets[workbook.SheetNames[0] || 'Sheet1'];
+  if (!sheet) {
+    throw new Error('No worksheet found in the provided Excel file.');
+  }
   const rows: Array<Array<unknown>> = utils.sheet_to_json(sheet, { header: 1 });
 
   const root: CategoryNode = {};
@@ -38,6 +41,7 @@ export default function parseExcel(buffer: Buffer): CategoryNode {
 
   for (let i = 2; i < rows.length; i++) {
     const row = rows[i];
+    if (!row) continue;
     const b = row[0]; // артикул или категория
     const c = row[1]; // наименование товара
     const d = row[2]; // описание

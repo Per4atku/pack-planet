@@ -63,7 +63,7 @@ const Header = () => {
           <div className='hidden lg:flex items-center space-x-4'>
             <div className='flex items-center space-x-2 text-sm'>
               <Phone className='w-4 h-4 text-eco-green' />
-              <a href={`tel:${cleanPhone(phones[0])}`}>{phones[0]}</a>
+              <a href={`tel:${cleanPhone(phones[0] || '')}`}>{phones[0]}</a>
             </div>
           </div>
 
@@ -117,7 +117,7 @@ const Header = () => {
             <div className='pt-4 border-t border-border'>
               <div className='flex items-center space-x-2 text-sm mb-4'>
                 <Phone className='w-4 h-4 text-eco-green' />
-                <a href={`tel:${cleanPhone(phones[0])}`}>{phones[0]}</a>
+                <a href={`tel:${cleanPhone(phones[0] || '')}`}>{phones[0]}</a>
               </div>
             </div>
           </nav>
