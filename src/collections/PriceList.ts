@@ -1,5 +1,6 @@
 import importFullCatalog from '@/app/(payload)/utils/importFullCatalog';
 import parseExcel from '@/utils/parseExcel';
+
 import type { CollectionConfig, CollectionSlug } from 'payload';
 
 export const PriceList: CollectionConfig = {
