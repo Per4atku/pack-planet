@@ -1,4 +1,4 @@
-import importFullCatalog from '@/app/(payload)/utils/importFullCatalog';
+import { importFullCatalog } from '@/app/(payload)/utils/importFullCatalog';
 import parseExcel from '@/utils/parseExcel';
 
 import type { CollectionConfig, CollectionSlug } from 'payload';
@@ -18,7 +18,7 @@ export const PriceList: CollectionConfig = {
       async ({ req }) => {
         const buffer = req.file?.data;
         const parsedSheet = parseExcel(buffer!);
-        await importFullCatalog(parsedSheet, req);
+        await importFullCatalog(parsedSheet);
       }
     ]
   }

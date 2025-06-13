@@ -9,7 +9,7 @@ type Product = {
   price: number;
 };
 
-type CategoryNode = {
+export type CategoryNode = {
   [categoryName: string]: CategoryNode | Product[] | undefined;
   _products?: Product[];
 };
