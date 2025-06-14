@@ -9,14 +9,15 @@ type ProductInput = {
   unit: string;
   sku: string;
   quantity: number;
-  categoryId: number | null;
+  categoryId: string | null; // используем tempId пока
 };
 
 type FlatCategory = {
   name: string;
-  parentName: string | null;
-  tempId: string;
   parentTempId: string | null;
+  tempId: string;
+  isRoot: boolean;
+  hasProducts: boolean;
 };
 
 export async function importFullCatalog(tree: CategoryNode) {
@@ -33,14 +34,13 @@ export async function importFullCatalog(tree: CategoryNode) {
   console.log(`📁 Категорий для вставки: ${allCategories.length}`);
   console.log(`📦 Товаров для вставки: ${allProducts.length}`);
 
-  // Вставляем категории пачками и получаем реальные ID
+  // Сопоставление tempId -> реальный ID
   const categoryIdMap = new Map<string, number>();
   const chunkSize = 500;
 
   for (let i = 0; i < allCategories.length; i += chunkSize) {
     const chunk = allCategories.slice(i, i + chunkSize);
 
-    // Преобразуем tempId → parentId на основе карты
     const inserted = await Promise.all(
       chunk.map(async (cat) => {
         const parentId = cat.parentTempId
@@ -51,7 +51,9 @@ export async function importFullCatalog(tree: CategoryNode) {
           .insert(categories)
           .values({
             name: cat.name,
-            categoryId: parentId
+            categoryId: parentId,
+            isRoot: cat.isRoot,
+            hasProducts: cat.hasProducts
           })
           .returning();
 
@@ -68,14 +70,11 @@ export async function importFullCatalog(tree: CategoryNode) {
     );
   }
 
-  // Подменяем categoryId у продуктов на реальный
   const preparedProducts = allProducts.map((p) => ({
     ...p,
-    quantity: p.quantity.toString(), // если quantity — текстовое поле
+    quantity: p.quantity.toString(),
     categoryId:
-      p.categoryId !== null
-        ? (categoryIdMap.get(p.categoryId as any) ?? null)
-        : null
+      p.categoryId !== null ? (categoryIdMap.get(p.categoryId) ?? null) : null
   }));
 
   for (let i = 0; i < preparedProducts.length; i += chunkSize) {
@@ -109,7 +108,7 @@ function collectData(
         productList.push({
           ...product,
           quantity: quantityNumber,
-          categoryId: parentTempId // это будет сопоставлено потом
+          categoryId: parentTempId
         });
       }
 
@@ -117,11 +116,16 @@ function collectData(
     }
 
     const tempId = `${key}_${depth}_${Math.random().toString(36).slice(2, 6)}`;
+
+    const hasProducts = '_products' in value!;
+    const isRoot = parentTempId === null;
+
     categoriesList.push({
       name: key,
-      parentName: parentTempId,
+      parentTempId,
       tempId,
-      parentTempId
+      isRoot,
+      hasProducts
     });
 
     collectData(
