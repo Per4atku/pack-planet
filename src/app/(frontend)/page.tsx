@@ -9,7 +9,6 @@ import ProductCategories from '@/components/ProductCategories';
 export default function Home() {
   return (
     <div className='min-h-screen'>
-      <Header />
       <Hero />
       {/* <AboutSection /> */}
       <ProductCategories />

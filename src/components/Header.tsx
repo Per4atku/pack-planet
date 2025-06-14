@@ -34,13 +34,13 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className='hidden md:flex items-center space-x-8'>
             <a
-              href='#home'
+              href='/'
               className='text-foreground hover:text-eco-green transition-colors'
             >
               Главная
             </a>
             <a
-              href='#products'
+              href='/products'
               className='text-foreground hover:text-eco-green transition-colors'
             >
               Продукция
