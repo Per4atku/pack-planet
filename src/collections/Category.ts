@@ -32,5 +32,8 @@ export const Category: CollectionConfig = {
   ],
   admin: {
     useAsTitle: 'name'
+  },
+  access: {
+    read: () => true // доступ для чтения всем
   }
 };

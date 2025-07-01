@@ -20,5 +20,8 @@ export const Product: CollectionConfig = {
   ],
   admin: {
     useAsTitle: 'name'
+  },
+  access: {
+    read: () => true // доступ для чтения всем
   }
 };
