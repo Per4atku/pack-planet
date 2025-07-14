@@ -1,10 +1,11 @@
 import { useRouter } from 'next/navigation';
 
 interface PageProps {
-  params: { category: string };
+  params: Promise<{ category: string }>;
 }
 
-export default function CategoryPage({ params }: PageProps) {
+export default async function CategoryPage(props: PageProps) {
+  const params = await props.params;
   const { category } = params;
 
   return (

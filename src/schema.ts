@@ -11,11 +11,12 @@ import {
 export const categories = pgTable('categories', {
   id: serial('id').primaryKey(),
   name: text('name').notNull(),
-  categoryId: integer('category_id'),
-  isRoot: boolean('is_root'),
+  parentId: integer('parent_id'),
   hasProducts: boolean('has_products'),
   createdAt: timestamp('created_at', { withTimezone: true }),
-  updatedAt: timestamp('updated_at', { withTimezone: true })
+  updatedAt: timestamp('updated_at', { withTimezone: true }),
+  slug: text('slug').notNull().unique(),
+  level: integer('level').notNull().default(0)
 });
 
 export const products = pgTable('products', {

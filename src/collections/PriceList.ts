@@ -1,5 +1,6 @@
 import { importFullCatalog } from '@/app/(payload)/utils/importFullCatalog';
 import parseExcel from '@/utils/parseExcel';
+import { revalidateTag } from 'next/cache';
 
 import type { CollectionConfig, CollectionSlug } from 'payload';
 
@@ -18,8 +19,14 @@ export const PriceList: CollectionConfig = {
       async ({ req }) => {
         const buffer = req.file?.data;
         const parsedSheet = parseExcel(buffer!);
+        console.log(parsedSheet);
         await importFullCatalog(parsedSheet);
+
+        revalidateTag('products');
+        revalidateTag('categories');
+        console.log('Revalidated products & categories tag');
       }
     ]
-  }
+  },
+  access: { read: () => true }
 };

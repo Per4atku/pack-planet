@@ -76,11 +76,7 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {
-    categories: {
-      products: 'products';
-    };
-  };
+  collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -183,16 +179,11 @@ export interface PriceList {
  */
 export interface Category {
   id: number;
-  isRoot?: boolean | null;
   hasProducts?: boolean | null;
   name: string;
-  category?: (number | null) | Category;
-  categories?: (number | Category)[] | null;
-  products?: {
-    docs?: (number | Product)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
+  level: number;
+  parent?: (number | null) | Category;
+  slug: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -336,12 +327,11 @@ export interface PriceListSelect<T extends boolean = true> {
  * via the `definition` "categories_select".
  */
 export interface CategoriesSelect<T extends boolean = true> {
-  isRoot?: T;
   hasProducts?: T;
   name?: T;
-  category?: T;
-  categories?: T;
-  products?: T;
+  level?: T;
+  parent?: T;
+  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }

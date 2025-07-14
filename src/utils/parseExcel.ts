@@ -4,7 +4,7 @@ type Product = {
   sku: string;
   name: string;
   description: string;
-  quantity: string; // оставляем строкой, т.к. значение может быть "4,000"
+  quantity: number; // оставляем строкой, т.к. значение может быть "4,000"
   unit: string;
   price: number;
 };
@@ -77,7 +77,10 @@ export default function parseExcel(buffer: Buffer): CategoryNode {
       sku: raw,
       name: (c || '').toString().trim(),
       description: (d || '').toString().trim(),
-      quantity: (e || '').toString().trim(),
+      quantity:
+        typeof e === 'string'
+          ? parseInt(e.toString().split(',')[0]!, 10) || 0
+          : 0,
       unit: (f || '').toString().trim(),
       price:
         typeof g === 'number'

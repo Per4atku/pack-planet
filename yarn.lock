@@ -3135,6 +3135,47 @@
     postcss "^8.4.41"
     tailwindcss "4.1.8"
 
+"@tanstack/query-async-storage-persister@^5.81.5":
+  version "5.81.5"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-async-storage-persister/-/query-async-storage-persister-5.81.5.tgz#9300d94151bf8f79f245deb5b66b5cbd91c2e19a"
+  integrity sha512-5a8t7Q0Dih3Qp80txG88sbNP5nXjqj+djnfVt1xbEuMNRwa6CWVA7fhfdatl3GL5gw8tlBEhPcP0ddnviJjNmw==
+  dependencies:
+    "@tanstack/query-persist-client-core" "5.81.5"
+
+"@tanstack/query-core@5.81.5":
+  version "5.81.5"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.81.5.tgz#14e0cc778bad8bc11d1cf130709910d8a353bb73"
+  integrity sha512-ZJOgCy/z2qpZXWaj/oxvodDx07XcQa9BF92c0oINjHkoqUPsmm3uG08HpTaviviZ/N9eP1f9CM7mKSEkIo7O1Q==
+
+"@tanstack/query-persist-client-core@5.81.5":
+  version "5.81.5"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-persist-client-core/-/query-persist-client-core-5.81.5.tgz#b2a9d02b401e1e3353c3a25f2da6e429122d223e"
+  integrity sha512-imiMWYXf8KuXavOgVRc5IDixqP0VKEN6IxZ/vyuX87Wk0eX7QmRtjLn1AD4Hz7GxYPM3RalRzP5Bshc30hgOcg==
+  dependencies:
+    "@tanstack/query-core" "5.81.5"
+
+"@tanstack/query-sync-storage-persister@^5.81.5":
+  version "5.81.5"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-sync-storage-persister/-/query-sync-storage-persister-5.81.5.tgz#3515ed4789f8b3ea2c6abaa219288c6d3d078b5b"
+  integrity sha512-dkCtueftbmK68PxcAT9oIH6R8LV3vZZJGg3uaq0w0gqcmSvRDqkquHmBIVBA7Oi+PAgO9yfw0Gv2SvCr4oJ7sg==
+  dependencies:
+    "@tanstack/query-core" "5.81.5"
+    "@tanstack/query-persist-client-core" "5.81.5"
+
+"@tanstack/react-query-persist-client@^5.81.5":
+  version "5.81.5"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query-persist-client/-/react-query-persist-client-5.81.5.tgz#55c0865bf8cd3bfb6a8946e276f975334a034e45"
+  integrity sha512-ZV69n636C22RkbFK0rzel80oWjyWbMKiUwUE2MKhYWTSr42+JmqoehDwJ5sWcO8CxHNm4vWF8pyG+goRzluMYw==
+  dependencies:
+    "@tanstack/query-persist-client-core" "5.81.5"
+
+"@tanstack/react-query@^5.81.5":
+  version "5.81.5"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.81.5.tgz#660dba8bb35f24c4cf3617b299a1e3990a3bb49e"
+  integrity sha512-lOf2KqRRiYWpQT86eeeftAGnjuTR35myTP8MXyvHa81VlomoAWNEd8x5vkcAfQefu0qtYCvyqLropFZqgI2EQw==
+  dependencies:
+    "@tanstack/query-core" "5.81.5"
+
 "@tokenizer/token@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@tokenizer/token/-/token-0.3.0.tgz#fe98a93fe789247e998c75e74e9c7c63217aa276"
@@ -6704,6 +6745,11 @@ react-select@5.9.0:
     prop-types "^15.6.0"
     react-transition-group "^4.3.0"
     use-isomorphic-layout-effect "^1.2.0"
+
+react-spinners@^0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/react-spinners/-/react-spinners-0.17.0.tgz#d518913e2192afaae76c5b781929ea3bd7b1910e"
+  integrity sha512-L/8HTylaBmIWwQzIjMq+0vyaRXuoAevzWoD35wKpNTxxtYXWZp+xtgkfD7Y4WItuX0YvdxMPU79+7VhhmbmuTQ==
 
 react-style-singleton@^2.2.2, react-style-singleton@^2.2.3:
   version "2.2.3"

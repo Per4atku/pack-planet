@@ -1,8 +1,11 @@
 import React from 'react';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Download } from 'lucide-react';
+import Link from 'next/link';
+import { cn } from '@/lib/utils';
+import DownloadPrice from './DownloadPrice';
 
-const ProductCategories = () => {
+const ProductCategories = async () => {
   const categories = [
     {
       title: 'Бумажные и пластиковые стаканчики',
@@ -88,13 +91,7 @@ const ProductCategories = () => {
         </div>
 
         <div className='text-center'>
-          <Button
-            size='lg'
-            className='bg-eco-green hover:bg-eco-green/90 hover-scale cursor-pointer text-white py-6 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300'
-          >
-            <Download className='text-white size-5' />
-            Скачать Прайс-Лист
-          </Button>
+          <DownloadPrice />
         </div>
       </div>
     </section>

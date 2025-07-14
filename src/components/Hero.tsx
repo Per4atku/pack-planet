@@ -35,13 +35,13 @@ const Hero = () => {
 
           <div className='flex flex-col sm:flex-row gap-4 justify-center items-center mb-12'>
             <a
-              href='#products'
+              href='/products'
               className={cn(
                 buttonVariants({ size: 'lg' }),
                 'bg-eco-green cursor-pointer hover:bg-eco-green/90 text-white px-8 py-6 text-lg'
               )}
             >
-              Смотреть продукцию
+              Перейти к товарам
             </a>
             <a
               href='#contact'
@@ -50,7 +50,7 @@ const Hero = () => {
                 'border-eco-green text-eco-green hover:bg-eco-green hover:text-white px-8 py-6 text-lg hover-scale'
               )}
             >
-              Перейти к контактам
+              Контакты
             </a>
           </div>
 

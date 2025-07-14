@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 import { cleanPhone, phones } from '@/data/phones';
+import Link from 'next/link';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,12 +29,12 @@ const Header = () => {
         <div className='container mx-auto px-4 h-full'>
           <div className='flex justify-between items-center h-full'>
             {/* Logo */}
-            <div className='flex items-center space-x-2'>
+            <Link href={'/'} className='flex items-center space-x-2'>
               <div className='w-10 h-10 rounded-lg flex items-center justify-center'>
                 <span className='text-3xl'>🌏</span>
               </div>
               <h1 className='text-xl font-bold'>Планета Упаковки</h1>
-            </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav className='hidden md:flex items-center space-x-8'>

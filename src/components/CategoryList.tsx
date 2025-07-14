@@ -1,42 +1,40 @@
-import axios from 'axios';
-import React from 'react';
-import { ScrollArea } from './ui/scroll-area';
+'use client';
 
-const getCategoryList = async () => {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/categories?limit=500`,
-      {
-        // Можно настроить кэш: cache: 'no-store' или revalidate
-        next: { revalidate: 3600 }
-      }
-    );
+import React, { ReactNode } from 'react';
+import CategoryTree from './CategoryTree';
+import { buttonVariants } from './ui/button';
+import { Separator } from './ui/separator';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { SheetTrigger } from './ui/sheet';
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
-    if (!res.ok) {
-      throw new Error(`Error: ${res.status}`);
-    }
+const CategoryList = ({ children }: { children: ReactNode }) => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
 
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
+  const cleanedParams = new URLSearchParams(searchParams.toString());
+  cleanedParams.delete('category');
+  cleanedParams.delete('categoryName');
+  cleanedParams.delete('page');
 
-const CategoryList: React.FC = async () => {
-  const categories = await getCategoryList();
+  const href = `${pathname}?${cleanedParams.toString()}`;
 
   return (
-    <div className='grid grid-cols-2 gap-4'>
-      {categories?.docs.map((category: { id: string; name: string }) => (
-        <div
-          key={category.id}
-          className='p-4 border rounded-lg hover:bg-gray-100 cursor-pointer'
+    <div className='mb-12 max-w-[calc(100vw-32px)] min-[400px]:w-full'>
+      <SheetTrigger asChild>
+        <Link
+          href={href}
+          className={cn(
+            buttonVariants({ variant: 'ghost' }),
+            'w-full justify-start font-semibold cursor-pointer pl-2 overflow-hidden text-ellipsis'
+          )}
         >
-          <h3 className='text-lg font-semibold'>{category.name}</h3>
-        </div>
-      ))}
+          ВСЕ ТОВАРЫ
+        </Link>
+      </SheetTrigger>
+      <Separator className='mb-4' />
+      {children}
     </div>
   );
 };

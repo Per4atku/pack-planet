@@ -1,3 +1,4 @@
+import { revalidateTag } from 'next/cache';
 import { CollectionConfig, CollectionSlug } from 'payload';
 
 export const Product: CollectionConfig = {
@@ -23,5 +24,12 @@ export const Product: CollectionConfig = {
   },
   access: {
     read: () => true // доступ для чтения всем
+  },
+  hooks: {
+    afterChange: [
+      async ({ doc }) => {
+        revalidateTag('products');
+      }
+    ]
   }
 };

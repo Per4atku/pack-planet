@@ -1,6 +1,7 @@
 import type { CategoryNode } from '@/utils/parseExcel';
 import { db } from '@/db/drizzle';
 import { categories, products } from '@/schema';
+import { v4 as uuidv4 } from 'uuid';
 
 type ProductInput = {
   name: string;
@@ -16,8 +17,9 @@ type FlatCategory = {
   name: string;
   parentTempId: string | null;
   tempId: string;
-  isRoot: boolean;
   hasProducts: boolean;
+  slug?: string;
+  level: number;
 };
 
 export async function importFullCatalog(tree: CategoryNode) {
@@ -41,32 +43,36 @@ export async function importFullCatalog(tree: CategoryNode) {
   for (let i = 0; i < allCategories.length; i += chunkSize) {
     const chunk = allCategories.slice(i, i + chunkSize);
 
-    const inserted = await Promise.all(
-      chunk.map(async (cat) => {
-        const parentId = cat.parentTempId
-          ? (categoryIdMap.get(cat.parentTempId) ?? null)
-          : null;
+    let insertedCount = 0;
 
-        const [insertedCategory] = await db
-          .insert(categories)
-          .values({
-            name: cat.name,
-            categoryId: parentId,
-            isRoot: cat.isRoot,
-            hasProducts: cat.hasProducts
-          })
-          .returning();
+    for (const cat of chunk) {
+      const parentId = cat.parentTempId
+        ? (categoryIdMap.get(cat.parentTempId) ?? null)
+        : null;
 
-        if (insertedCategory) {
-          categoryIdMap.set(cat.tempId, insertedCategory.id);
-        }
+      const [insertedCategory] = await db
+        .insert(categories)
+        .values({
+          name: cat.name,
+          parentId,
+          hasProducts: cat.hasProducts,
+          slug: uuidv4(),
+          level: cat.level
+        })
+        .returning();
 
-        return insertedCategory;
-      })
-    );
+      if (insertedCategory) {
+        categoryIdMap.set(cat.tempId, insertedCategory.id);
+        insertedCount++;
+      }
+
+      console.log(
+        `➕ Категория "${cat.name}" добавлена с ID ${insertedCategory?.id} (parentId: ${parentId})`
+      );
+    }
 
     console.log(
-      `✅ Вставлено категорий: ${i + inserted.length}/${allCategories.length}`
+      `✅ Вставлено категорий: ${i + insertedCount}/${allCategories.length}`
     );
   }
 
@@ -74,7 +80,9 @@ export async function importFullCatalog(tree: CategoryNode) {
     ...p,
     quantity: p.quantity.toString(),
     categoryId:
-      p.categoryId !== null ? (categoryIdMap.get(p.categoryId) ?? null) : null
+      p.categoryId !== null && categoryIdMap.has(p.categoryId)
+        ? categoryIdMap.get(p.categoryId)!
+        : null
   }));
 
   for (let i = 0; i < preparedProducts.length; i += chunkSize) {
@@ -118,14 +126,13 @@ function collectData(
     const tempId = `${key}_${depth}_${Math.random().toString(36).slice(2, 6)}`;
 
     const hasProducts = '_products' in value!;
-    const isRoot = parentTempId === null;
 
     categoriesList.push({
       name: key,
       parentTempId,
       tempId,
-      isRoot,
-      hasProducts
+      hasProducts,
+      level: depth
     });
 
     collectData(

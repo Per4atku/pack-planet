@@ -1,4 +1,5 @@
 import CategoryList from '@/components/CategoryList';
+import CategoryTree from '@/components/CategoryTree';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -13,8 +14,10 @@ import {
   SheetTitle,
   SheetTrigger
 } from '@/components/ui/sheet';
+import { ChevronDown, ChevronRight, MenuSquareIcon } from 'lucide-react';
 
-import React, { ReactNode } from 'react';
+import React, { ReactNode, Suspense } from 'react';
+import LoadingProducts from './loading';
 
 interface ProductsLayoutProps {
   children: ReactNode;
@@ -25,10 +28,17 @@ const ProductsLayout = ({ children }: ProductsLayoutProps) => {
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant='outline'>Open</Button>
+          <Button
+            variant='ghost'
+            className='fixed w-screen rounded-none text-white bg-sidebar-foreground hover:bg-sidebar-foreground/90 hover:text-white  py-6 px-12'
+          >
+            <MenuSquareIcon />
+            Категории
+            <ChevronDown />
+          </Button>
         </SheetTrigger>
 
-        <SheetContent side='left' className='max-h-screen overflow-y-scroll'>
+        <SheetContent side='top' className='max-h-screen overflow-y-scroll'>
           <SheetHeader>
             <SheetTitle>Выбор Категорий</SheetTitle>
             <SheetDescription>
@@ -36,17 +46,15 @@ const ProductsLayout = ({ children }: ProductsLayoutProps) => {
             </SheetDescription>
           </SheetHeader>
           <div className='grid flex-1 auto-rows-min gap-6 px-4'>
-            <CategoryList />
+            <CategoryList>
+              <CategoryTree />
+            </CategoryList>
           </div>
-          <SheetFooter>
-            <Button type='submit'>Save changes</Button>
-            <SheetClose asChild>
-              <Button variant='outline'>Close</Button>
-            </SheetClose>
-          </SheetFooter>
         </SheetContent>
       </Sheet>
-      <div>{children}</div>
+      <div>
+        <Suspense fallback={<LoadingProducts />}>{children}</Suspense>
+      </div>
     </>
   );
 };

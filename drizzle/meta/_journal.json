@@ -8,6 +8,34 @@
       "when": 1749809798481,
       "tag": "0000_dapper_mikhail_rasputin",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1751472532947,
+      "tag": "0001_legal_peter_parker",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1751473091671,
+      "tag": "0002_noisy_shinobi_shaw",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1751473488600,
+      "tag": "0003_jittery_xavin",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1751474010482,
+      "tag": "0004_slimy_power_pack",
+      "breakpoints": true
     }
   ]
 }
