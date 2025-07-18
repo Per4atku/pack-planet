@@ -1,8 +1,9 @@
 // app/products/page.tsx
-import { Suspense } from 'react';
+
 import PaginationControls from '@/components/PaginationControls';
 import { ProductGrid } from '@/components/ProductGrid';
-import PuffLoader from 'react-spinners/PuffLoader';
+
+export const dynamic = 'force-dynamic';
 
 export default async function ProductsPage(props: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -22,7 +23,9 @@ export default async function ProductsPage(props: {
     `${process.env.NEXT_PUBLIC_API_URL}/products?limit=${limit}&page=${currentPage}` +
     (category ? `&where[category][equals]=${category}` : '');
 
-  const res = await fetch(apiRoute, { next: { tags: ['products'] } });
+  const res = await fetch(apiRoute, {
+    next: { tags: ['products'], revalidate: 3600 }
+  });
   const data = await res.json();
 
   const products = data.docs;
