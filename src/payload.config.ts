@@ -3,6 +3,7 @@ import { postgresAdapter } from '@payloadcms/db-postgres';
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs';
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 
 import path from 'path';
 import { buildConfig } from 'payload';
@@ -38,10 +39,20 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    payloadCloudPlugin(),
+    vercelBlobStorage({
+      enabled: true,
+      collections: {
+        media: true,
+        'price-list': { prefix: 'price-list' }
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+      clientUploads: true,
+      addRandomSuffix: true
+    }),
     nestedDocsPlugin({
-      collections: []
+      collections: ['categories']
     })
+
     // storage-adapter-placeholder
   ]
 });
