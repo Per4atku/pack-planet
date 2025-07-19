@@ -4,8 +4,8 @@ import Header from '@/components/Header';
 import Providers from '@/components/Providers';
 
 export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template'
+  description: 'Планета Упаковки - упаковка для бизнеса',
+  title: '🌏 Планета Упаковки'
 };
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

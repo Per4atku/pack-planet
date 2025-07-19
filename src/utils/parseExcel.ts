@@ -39,15 +39,23 @@ export default function parseExcel(buffer: Buffer): CategoryNode {
 
   let lastWasProduct = false;
 
+  let columnOffset = 0;
+
   for (let i = 2; i < rows.length; i++) {
     const row = rows[i];
     if (!row) continue;
-    const b = row[0]; // артикул или категория
-    const c = row[1]; // наименование товара
-    const d = row[2]; // описание
-    const e = row[3]; // количество
-    const f = row[4]; // unit
-    const g = row[5]; // цена
+
+    if (i === 2) {
+      if (!row[0]) {
+        columnOffset = 1; // если первый столбец пустой, сдвигаем на 1
+      }
+    }
+    const b = row[0 + columnOffset]; // артикул
+    const c = row[1 + columnOffset]; // наименование
+    const d = row[2 + columnOffset]; // описание
+    const e = row[3 + columnOffset]; // количество
+    const f = row[4 + columnOffset]; // unit
+    const g = row[5 + columnOffset]; // цена
 
     const hasPrice = !!g;
     const raw = (b || '').toString().trim();
