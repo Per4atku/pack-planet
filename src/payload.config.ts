@@ -43,14 +43,11 @@ export default buildConfig({
       enabled: true,
       collections: {
         media: true,
-        'price-list': { prefix: 'price-list' }
+        'price-list': true
       },
       token: process.env.BLOB_READ_WRITE_TOKEN || '',
       clientUploads: true,
       addRandomSuffix: true
-    }),
-    nestedDocsPlugin({
-      collections: ['categories']
     })
 
     // storage-adapter-placeholder
