@@ -28,6 +28,7 @@ export const products = pgTable('products', {
   sku: text('sku'),
   quantity: numeric('quantity'),
   categoryId: integer('category_id').references(() => categories.id),
+  categoryName: text('category_name').unique(),
   createdAt: timestamp('created_at', { withTimezone: true }),
   updatedAt: timestamp('updated_at', { withTimezone: true })
 });

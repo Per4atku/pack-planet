@@ -1,5 +1,6 @@
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 const Hero = () => {
   return (
@@ -8,16 +9,15 @@ const Hero = () => {
       className='relative min-h-screen flex items-center justify-center overflow-hidden'
     >
       {/* Background */}
-      <div className='absolute inset-0 nature-gradient'></div>
-      <div
-        className='absolute inset-0 opacity-10'
-        style={{
-          backgroundImage:
-            'url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      ></div>
+      <div className='absolute inset-0'>
+        <Image
+          src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80'
+          alt='Background'
+          fill
+          priority
+          className='object-cover opacity-10'
+        />
+      </div>
 
       {/* Content */}
       <div className='relative z-10 container mx-auto px-4 text-center py-6'>

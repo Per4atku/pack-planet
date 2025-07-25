@@ -5,6 +5,7 @@ export const Product: CollectionConfig = {
   slug: 'products',
   fields: [
     { name: 'name', type: 'text', required: true },
+    { name: 'category_name', type: 'text', unique: true },
     { name: 'description', type: 'textarea' },
     { name: 'price', type: 'number', required: true },
     { name: 'unit', type: 'text' },
@@ -33,3 +34,29 @@ export const Product: CollectionConfig = {
     ]
   }
 };
+
+function collectData(
+  node: any,
+  parentTempId: string | null,
+  parentCategoryName: string | null = null
+) {
+  // ... other code ...
+
+  // Обработка продуктов
+  if (node.type === 'product') {
+    const product = {
+      name: node.name,
+      categoryName: parentCategoryName ?? ''
+      // ... other fields ...
+    };
+    // ... other code ...
+  }
+
+  // Рекурсивный вызов
+  for (const [key, value] of Object.entries(node.children || {})) {
+    const newTempId = generateTempId();
+    collectData(value, newTempId, key);
+  }
+
+  // ... other code ...
+}

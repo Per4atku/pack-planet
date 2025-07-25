@@ -194,6 +194,7 @@ export interface Category {
 export interface Product {
   id: number;
   name: string;
+  category_name?: string | null;
   description?: string | null;
   price: number;
   unit?: string | null;
@@ -341,6 +342,7 @@ export interface CategoriesSelect<T extends boolean = true> {
  */
 export interface ProductsSelect<T extends boolean = true> {
   name?: T;
+  category_name?: T;
   description?: T;
   price?: T;
   unit?: T;
