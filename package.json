@@ -1,0 +1,12 @@
+{
+  "name": "pack-planet",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "pnpm -r --parallel run dev",
+    "build:strapi": "pnpm --filter strapi run build",
+    "build:next": "pnpm --filter nextjs build"
+  },
+  "devDependencies": {},
+  "packageManager": "pnpm@10.15.1"
+}
