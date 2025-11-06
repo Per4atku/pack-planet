@@ -21,14 +21,16 @@
     "@strapi/plugin-graphql": "^5.29.0",
     "@strapi/plugin-users-permissions": "5.29.0",
     "@strapi/strapi": "5.29.0",
+    "axios": "^1.12.2",
     "better-sqlite3": "11.3.0",
     "fs-extra": "^10.0.0",
     "libxmljs": "^1.0.11",
-    "mime-types": "^2.1.27",
+    "mime-types": "^2.1.35",
     "node-gyp": "^11.5.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
+    "strapi-plugin-media-upload": "^1.1.2",
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
