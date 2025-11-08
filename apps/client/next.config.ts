@@ -10,10 +10,12 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
       {
-        hostname: "localhost",
+        protocol: "https",
+        hostname: "wonderful-gift-75e184e34f.strapiapp.com",
+        port: "",
+        pathname: "/**",
       },
     ],
-    unoptimized: true,
   },
 };
 
