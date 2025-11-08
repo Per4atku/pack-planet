@@ -13,8 +13,9 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import resolvedImage from "@/lib/resolvedImage";
+import { Image as IImage } from "@/api";
 
-export default function ImageCarousel({ images }: { images: Image[] }) {
+export default function ImageCarousel({ images }: { images?: IImage[] }) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);

@@ -9,6 +9,11 @@ interface CategoriesApiResponse {
   meta: Meta;
 }
 
+interface PartnersApiResponse {
+  data: Partner[];
+  meta: Meta;
+}
+
 /* ---------- Product ---------- */
 interface Product {
   id: number;
@@ -24,7 +29,7 @@ interface Product {
   wholesale_price?: number | null;
   wholesale_min_qty?: number | null;
   unit?: string | null;
-  images: Image[];
+  images?: Image[];
   category?: Category | null;
 }
 
@@ -37,6 +42,18 @@ interface Category {
   publishedAt?: string | null; // sometimes present
   Name: string;
   products?: Product[];
+}
+
+/* ---------- Partner ---------- */
+interface Partner {
+  id: number;
+  documentId: string;
+  createdAt: string; // ISO datetime
+  updatedAt: string; // ISO datetime
+  publishedAt?: string | null; // sometimes present
+  name: string;
+  description?: string;
+  image?: Image;
 }
 
 /* ---------- Image & formats ---------- */

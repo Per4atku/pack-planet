@@ -1,4 +1,11 @@
 import httpClient from "@/lib/http-client";
+import {
+  CategoriesApiResponse,
+  Category,
+  PartnersApiResponse,
+  Product,
+  ProductsApiResponse,
+} from ".";
 
 export const getProducts = async ({
   page,
@@ -44,4 +51,8 @@ export const getProductsFilteredByCategory = async ({
   return await httpClient.get(
     `/products?filters[category][documentId][$eq]=${categoryId}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
   );
+};
+
+export const getPartners = async (): Promise<PartnersApiResponse> => {
+  return await httpClient.get(`/partners?populate=image`);
 };

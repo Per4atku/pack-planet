@@ -1,6 +1,31 @@
 import { getCategoryById, getProductsFilteredByCategory } from "@/api/api";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ProductGrid from "@/components/ProductGrid";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { categoryId?: string };
+}): Promise<Metadata> {
+  const categoryId = params.categoryId || "y6ennjodlsqhr1gczg694rk8";
+  const category = await getCategoryById({ categoryId });
+
+  const name = category.data.Name || "Все Товары";
+
+  return {
+    title: `${name} | Планета Упаковки`,
+    openGraph: {
+      title: `${name} | Планета Упаковки`,
+      type: "website",
+      url: `https://planetaupackovki.ru/catalog/${categoryId}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${name} | Планета Упаковки`,
+    },
+  };
+}
 
 export default async function CatalogPage({
   params,
