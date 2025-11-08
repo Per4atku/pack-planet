@@ -22,6 +22,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
                 src={resolvedImage(product.images?.at(0)?.url || "")}
                 width={192}
                 height={192}
+                priority
                 className="w-full h-full object-contain"
               />
             ) : (

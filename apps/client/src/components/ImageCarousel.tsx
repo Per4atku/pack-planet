@@ -57,6 +57,7 @@ export default function ImageCarousel({ images }: { images?: IImage[] }) {
           {images.map((image, index) => (
             <CarouselItem key={index}>
               <Image
+                priority
                 className="object-contain w-full aspect-square"
                 alt={image.alternativeText || ""}
                 src={resolvedImage(image.url)}
