@@ -18,12 +18,9 @@ const ProductGrid = async ({
     <div className="flex-1 overflow-y-auto">
       <div className="mb-4">
         <div className="flex justify-between">
-          <h1 className="text-2xl font-bold text-gray-900">
-            {selectedCategory ? selectedCategory.Name : "Все Товары"}
-          </h1>
-          <p>
+          <div className="text-2xl font-bold text-gray-900">
             <CategorySelector categories={categories.data} />
-          </p>
+          </div>
         </div>
         <p className="text-gray-600 mt-1">{productsTotal} товаров найдено</p>
       </div>
