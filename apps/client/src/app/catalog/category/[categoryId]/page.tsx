@@ -6,9 +6,9 @@ import { Metadata } from "next";
 export async function generateMetadata({
   params,
 }: {
-  params: { categoryId?: string };
+  params: Promise<{ categoryId?: string }>;
 }): Promise<Metadata> {
-  const categoryId = params.categoryId || "y6ennjodlsqhr1gczg694rk8";
+  const categoryId = (await params).categoryId || "";
   const category = await getCategoryById({ categoryId });
 
   const name = category.data.Name || "Все Товары";
