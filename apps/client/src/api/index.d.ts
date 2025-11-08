@@ -1,3 +1,5 @@
+import { BlocksContent } from "@strapi/blocks-react-renderer";
+
 interface ProductsApiResponse {
   data: Product[];
   meta: Meta;
@@ -17,10 +19,10 @@ interface Product {
   sku?: string | null;
   name: string;
   price: number;
-  description?: string | null;
+  description?: BlocksContent | null;
   wholesale: boolean;
   wholesale_price?: number | null;
-  wholesale_count?: number | null;
+  wholesale_min_qty?: number | null;
   unit?: string | null;
   images: Image[];
   category?: Category | null;
@@ -55,7 +57,7 @@ interface Image {
   url: string;
   previewUrl?: string | null;
   provider?: string | null;
-  provider_metadata?: any | null;
+  provider_metadata?: unknown | null;
   createdAt: string;
   updatedAt: string;
   publishedAt?: string | null;

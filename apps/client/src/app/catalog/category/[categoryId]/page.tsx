@@ -1,8 +1,4 @@
-import {
-  getCategoryById,
-  getProductsFilteredByCategory,
-  getProducts,
-} from "@/api/api";
+import { getCategoryById, getProductsFilteredByCategory } from "@/api/api";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ProductGrid from "@/components/ProductGrid";
 

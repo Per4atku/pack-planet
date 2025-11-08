@@ -4,7 +4,7 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "Product"
+    "displayName": "🛍️Товары"
   },
   "options": {
     "draftAndPublish": true
@@ -29,9 +29,6 @@
       "type": "string",
       "default": "шт",
       "required": true
-    },
-    "description": {
-      "type": "richtext"
     },
     "images": {
       "type": "media",
@@ -58,7 +55,7 @@
         }
       }
     },
-    "wholesale_count": {
+    "wholesale_min_qty": {
       "type": "integer",
       "conditions": {
         "visible": {
@@ -75,6 +72,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::category.category"
+    },
+    "description": {
+      "type": "blocks"
     }
   }
 }

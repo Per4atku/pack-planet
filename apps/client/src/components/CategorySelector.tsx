@@ -14,6 +14,8 @@ import {
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Separator } from "./ui/separator";
+import { Fragment } from "react/jsx-runtime";
 
 export function CategorySelector({ categories }: { categories: Category[] }) {
   const pathname = usePathname();
@@ -38,13 +40,36 @@ export function CategorySelector({ categories }: { categories: Category[] }) {
         </SheetHeader>
 
         <div className="p-4 flex flex-col gap-2">
+          <Link
+            href={`/catalog`}
+            className={`text-base rounded-md px-3 py-2 transition-colors ${
+              currentCategoryId === "catalog"
+                ? "bg-primary text-primary-foreground"
+                : "hover:bg-muted"
+            }`}
+          >
+            Все Товары
+          </Link>
+
+          <Separator />
+
+          <h2
+            itemProp="name"
+            style={{
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+            }}
+            className="text-2xl overflow-hidden text-ellipsis"
+          ></h2>
+
           {categories.map((category) => {
             const isActive = category.documentId === currentCategoryId;
             return (
               <Link
-                href={`/catalog/category/${category.documentId}`}
                 key={category.documentId}
-                className={`text-lg rounded-md px-3 py-2 transition-colors ${
+                href={`/catalog/category/${category.documentId}`}
+                className={`text-base rounded-md px-3 py-2 line-clamp-2 border overflow-hidden text-ellipsis transition-colors ${
                   isActive
                     ? "bg-primary text-primary-foreground"
                     : "hover:bg-muted"

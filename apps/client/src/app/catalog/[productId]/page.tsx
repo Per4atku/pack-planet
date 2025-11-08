@@ -1,7 +1,11 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { getProductById } from "@/api/api";
-import { ImageCarousel } from "@/components/ImageCarousel";
+
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+
+import Link from "next/link";
+import ImageCarousel from "@/components/ImageCarousel";
 
 export default async function ProductPage({
   params,
@@ -13,41 +17,79 @@ export default async function ProductPage({
   const product = response.data;
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Изображение */}
+    <article
+      className="grid grid-cols-1 sm:grid-cols-2"
+      itemType="https://schema.org/Product"
+    >
+      {/* Image Carousel */}
+      {/* <div className="w-full aspect-square bg-red-500"></div> */}
 
-        <ImageCarousel images={product.images} />
+      <ImageCarousel images={product.images} />
 
-        {/* Информация о товаре */}
-        <div className="flex flex-col gap-4">
-          <h1 className="text-3xl font-bold">{product.name}</h1>
-          <p className="text-gray-500">SKU: {product.sku}</p>
+      <div className="flex flex-col justify-center space-y-6">
+        {/* Product Name */}
+        <div className="flex gap-2 justify-between items-center">
+          <h2
+            itemProp="name"
+            style={{
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+            }}
+            className="text-2xl overflow-hidden text-ellipsis"
+          >
+            {product.name}
+          </h2>
+          <Badge className="text-base" itemProp="skuxx">
+            {product.sku}
+          </Badge>
+        </div>
 
-          <div className="flex items-center gap-4">
-            <span className="text-2xl font-semibold text-eco-green">
-              {product.price} ₽ / {product.unit}
-            </span>
+        {/* Price */}
+        <div className="text-xl flex justify-between">
+          <div
+            itemScope
+            itemProp="offers"
+            itemType="https://schema.org/Offer"
+            aria-label="Цены и условия"
+          >
+            <data value={product.price}>{product.price}₽</data>{" "}
+            <span>/{product.unit}</span>
+            <meta itemProp="priceCurrency" content="RUB" />
             {product.wholesale && (
-              <Badge className="bg-green-100 text-green-800 text-base font-bold">
-                Опт: {product.wholesale_price} ₽/{product.unit} от{" "}
-                {product.wholesale_count} {product.unit}
-              </Badge>
+              <p className="text-sm italic">Розничная цена</p>
             )}
           </div>
+          {product.wholesale && (
+            <div className="text-eco-green">
+              {product.wholesale_price}₽<span>/{product.unit}</span>
+              <p className="text-sm italic">
+                Оптовая цена (от {product.wholesale_min_qty} {product.unit})
+              </p>
+            </div>
+          )}
+        </div>
 
-          <Card>
+        {/* Category */}
+
+        <div itemProp="category" content={product.category?.Name}>
+          <Link href={`/catalog/category/${product.category?.documentId}`}>
+            <Badge className="text-base underline" variant={"outline"}>
+              {product.category?.Name}
+            </Badge>
+          </Link>
+        </div>
+        {product.description && (
+          <Card
+            itemProp="description"
+            className="my-12 w-full col-start-1 col-end-3"
+          >
             <CardContent>
-              <p className="text-gray-700">{product.description}</p>
+              <BlocksRenderer content={product.description} />
             </CardContent>
           </Card>
-
-          <div className="flex items-center gap-2">
-            <span className="font-medium">Категория:</span>
-            <Badge>{product.category?.Name}</Badge>
-          </div>
-        </div>
+        )}
       </div>
-    </div>
+    </article>
   );
 }
