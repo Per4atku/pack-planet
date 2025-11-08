@@ -1,11 +1,14 @@
-import httpClient from "@/lib/http-client";
+import httpClient from "@/lib/instance";
 import {
   CategoriesApiResponse,
   Category,
+  Meta,
   PartnersApiResponse,
   Product,
   ProductsApiResponse,
 } from ".";
+
+const ISR_REVALIDATE = 60; // seconds
 
 export const getProducts = async ({
   page,
@@ -14,9 +17,12 @@ export const getProducts = async ({
   page: string;
   pageSize: string;
 }): Promise<ProductsApiResponse> => {
-  return await httpClient.get(
-    `/products?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
+  const response: { data: ProductsApiResponse } = await httpClient.get(
+    `/products?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
+    { next: { revalidate: ISR_REVALIDATE } }
   );
+
+  return response.data;
 };
 
 export const getProductById = async ({
@@ -24,19 +30,36 @@ export const getProductById = async ({
 }: {
   productId: string;
 }): Promise<{ data: Product; meta: unknown }> => {
-  return await httpClient.get(`/products/${productId}?populate=*`);
+  const response: { data: { data: Product; meta: unknown } } =
+    await httpClient.get(`/products/${productId}?populate=*`, {
+      next: { revalidate: ISR_REVALIDATE },
+    });
+
+  return response.data;
 };
 
 export const getCategories = async (): Promise<CategoriesApiResponse> => {
-  return await httpClient.get(`/categories?pagination[pageSize]=100`);
+  const response: { data: CategoriesApiResponse } = await httpClient.get(
+    `/categories?pagination[pageSize]=100`,
+    {
+      next: { revalidate: ISR_REVALIDATE },
+    }
+  );
+
+  return response.data;
 };
 
 export const getCategoryById = async ({
   categoryId,
 }: {
   categoryId: string;
-}): Promise<{ data: Category; meta: unknown }> => {
-  return await httpClient.get(`/categories/${categoryId}?populate=*`);
+}): Promise<{ data: Category; meta: Meta }> => {
+  const response: { data: { data: Category; meta: Meta } } =
+    await httpClient.get(`/categories/${categoryId}?populate=*`, {
+      next: { revalidate: ISR_REVALIDATE },
+    });
+
+  return response.data;
 };
 
 export const getProductsFilteredByCategory = async ({
@@ -48,11 +71,21 @@ export const getProductsFilteredByCategory = async ({
   page: string;
   pageSize: string;
 }): Promise<ProductsApiResponse> => {
-  return await httpClient.get(
-    `/products?filters[category][documentId][$eq]=${categoryId}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
+  const response: { data: ProductsApiResponse } = await httpClient.get(
+    `/products?filters[category][documentId][$eq]=${categoryId}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
+    { next: { revalidate: ISR_REVALIDATE } }
   );
+
+  return response.data;
 };
 
 export const getPartners = async (): Promise<PartnersApiResponse> => {
-  return await httpClient.get(`/partners?populate=image`);
+  const response: { data: PartnersApiResponse } = await httpClient.get(
+    `/partners?populate=image`,
+    {
+      next: { revalidate: ISR_REVALIDATE },
+    }
+  );
+
+  return response.data;
 };

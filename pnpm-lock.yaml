@@ -25,6 +25,9 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.2.3
         version: 1.2.3(@types/react@19.2.2)(react@19.2.0)
+      '@siberiacancode/fetches':
+        specifier: ^1.13.1
+        version: 1.13.1
       '@strapi/blocks-react-renderer':
         specifier: ^1.0.2
         version: 1.0.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -2627,6 +2630,9 @@ packages:
 
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
+
+  '@siberiacancode/fetches@1.13.1':
+    resolution: {integrity: sha512-gzFRLfq7vsZ+C31l/RjOU7Gpb9Ag1yCOWJdRiSWW/SKOZXvZfc3D90v5vukv4JJfYigQoakuI3dkzHLfR1o+Ow==}
 
   '@simov/deep-extend@1.0.0':
     resolution: {integrity: sha512-Arv8/ZPcdKAMJnNF8cks35mPq1y3JnwH1lWpfWDKlJoj+Vw2xmA4+oL7m9GVHTgdX0mGFR7bCPTBTGbxhnfJJw==}
@@ -11494,6 +11500,8 @@ snapshots:
       - '@types/node'
 
   '@sec-ant/readable-stream@0.4.1': {}
+
+  '@siberiacancode/fetches@1.13.1': {}
 
   '@simov/deep-extend@1.0.0': {}
 
