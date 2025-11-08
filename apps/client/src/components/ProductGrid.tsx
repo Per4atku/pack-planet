@@ -1,6 +1,7 @@
 import { getCategories } from "@/api/api";
 import { CategorySelector } from "./CategorySelector";
 import { ProductCard } from "./ProductCard";
+import { Category, Product } from "@/api";
 
 const ProductGrid = async ({
   products,

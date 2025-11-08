@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import resolvedImage from "@/lib/resolvedImage";
 import Link from "next/link";
+import { Product } from "@/api";
 
 export const ProductCard = ({ product }: { product: Product }) => {
   const hasImage = product.images && product.images.length > 0;
@@ -24,7 +25,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
               <Image
                 draggable={false}
                 alt={product.name || "Изображение товара"}
-                src={resolvedImage(product.images[0].url)}
+                src={resolvedImage(product.images?.at(0)?.url || "")}
                 width={192}
                 height={192}
                 className="w-full h-full object-contain"

@@ -16,6 +16,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Separator } from "./ui/separator";
 import { Fragment } from "react/jsx-runtime";
+import { Category } from "@/api";
 
 export function CategorySelector({ categories }: { categories: Category[] }) {
   const pathname = usePathname();
