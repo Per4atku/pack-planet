@@ -5,6 +5,7 @@ import { Menu, X, Phone } from "lucide-react";
 import { cleanPhone, phones } from "@/data/phones";
 import Link from "next/link";
 import MaxWidthWrapper from "./MaxWidthWrapper";
+import { Button } from "./ui/button";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -73,13 +74,18 @@ const Header = () => {
               </div>
 
               {/* Mobile Menu Toggle */}
-              <button className="md:hidden" onClick={toggleMenu}>
+              <Button
+                variant={"ghost"}
+                aria-label="Menu Button"
+                className="md:hidden"
+                onClick={toggleMenu}
+              >
                 {isMenuOpen ? (
-                  <X className="w-6 h-6" />
+                  <X aria-label="Close" className="w-6 h-6" />
                 ) : (
-                  <Menu className="w-6 h-6" />
+                  <Menu aria-label="Open Munu" className="w-6 h-6" />
                 )}
-              </button>
+              </Button>
             </div>
           </div>
         </MaxWidthWrapper>
