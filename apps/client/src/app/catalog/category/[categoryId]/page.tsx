@@ -1,4 +1,8 @@
-import { getCategoryById, getProductsFilteredByCategory } from "@/api/api";
+import {
+  getCategories,
+  getCategoryById,
+  getProductsFilteredByCategory,
+} from "@/api/api";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ProductGrid from "@/components/ProductGrid";
 import { Metadata } from "next";
@@ -25,6 +29,19 @@ export async function generateMetadata({
       title: `${name} | Планета Упаковки`,
     },
   };
+}
+
+// Next.js will invalidate the cache when a
+// request comes in, at most once every 60 seconds.
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const response = await getCategories();
+  const categories = response.data;
+
+  return categories.map((cat) => ({
+    categoryId: cat.documentId,
+  }));
 }
 
 export default async function CatalogPage({

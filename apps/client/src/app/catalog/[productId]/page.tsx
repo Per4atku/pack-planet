@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { getProductById } from "@/api/api";
+import { getProductById, getProducts } from "@/api/api";
 
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
@@ -66,6 +66,24 @@ export async function generateMetadata({
     // optional: add icons if you use them
     // icons: { icon: '/favicon.ico', apple: '/apple-touch-icon.png' },
   };
+}
+
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const response = await getProducts({ page: "1", pageSize: "25" });
+  const { pageCount } = response.meta.pagination;
+
+  const productIds: string[] = response.data.map((p) => p.documentId);
+
+  // Fetch remaining pages (if any)
+  for (let page = 2; page <= pageCount; page++) {
+    const res = await getProducts({ page: String(page), pageSize: "25" });
+    productIds.push(...res.data.map((p) => p.documentId));
+  }
+
+  // Return params in required format
+  return productIds.map((id) => ({ productId: id }));
 }
 
 export default async function ProductPage({
