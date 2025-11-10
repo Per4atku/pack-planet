@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Partners from "@/components/Partners";
 import { Metadata } from "next";
@@ -36,6 +37,7 @@ export default async function Home() {
     <>
       <Hero />
       <Partners />
+      <Footer />
     </>
   );
 }

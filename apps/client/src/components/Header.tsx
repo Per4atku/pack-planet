@@ -96,7 +96,7 @@ const Header = () => {
 
       {/* Mobile Navigation */}
       <div
-        className={`fixed top-[var(--header-height)] left-0 w-full z-40 bg-white transition-all shadow-2xl duration-300 ease-in-out overflow-hidden md:hidden ${
+        className={`fixed top-(--header-height) left-0 w-full z-40 bg-white transition-all shadow-2xl duration-300 ease-in-out overflow-hidden md:hidden ${
           isMenuOpen ? "max-h-[500px] py-4 border-t border-border" : "max-h-0"
         }`}
       >
