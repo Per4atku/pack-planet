@@ -10,7 +10,7 @@ const ButtonBack = () => {
   return (
     <Button
       variant={"outline"}
-      className="cursor-pointer"
+      className="cursor-pointer fixed z-10"
       onClick={() => router.back()}
     >
       <ArrowLeftIcon />
