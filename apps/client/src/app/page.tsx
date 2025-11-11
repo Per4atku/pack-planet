@@ -1,3 +1,4 @@
+import Delivery from "@/components/Delivery";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
@@ -49,6 +50,7 @@ export default async function Home() {
         <FeaturedProducts />
       </Suspense>
       <Partners />
+      <Delivery />
 
       <Footer />
     </>

@@ -12,7 +12,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
   const hasImage = product.images && product.images.length > 0;
 
   return (
-    <Card className="hover:shadow-lg transition-shadow relative">
+    <Card className="hover:shadow-lg transition-shadow relative ">
       <CardContent className="p-0">
         <Link href={`/catalog/${product.documentId}`}>
           <div className="relative w-full h-36 flex items-center justify-center py-4 ">
@@ -21,7 +21,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
               <div className="absolute -right-6 -top-10 z-30 group">
                 {/* Fire glow */}
                 <div
-                  className="absolute w-28 h-28 rounded-full blur-2xl opacity-60"
+                  className="absolute w-28 h-28 rounded-full blur-2xl opacity-60 "
                   style={{
                     background:
                       "radial-gradient(circle, #ED782F 0%, rgba(237,120,47,0.4) 60%, rgba(237,120,47,0) 100%)",
@@ -30,6 +30,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
                 />
                 {/* Fire icon */}
                 <Image
+                  draggable={false}
                   src={fire}
                   width={75}
                   height={75}
