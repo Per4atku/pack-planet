@@ -77,11 +77,7 @@ export default async function CatalogPage({
           {products.meta.pagination.total} товаров найдено
         </p>
       </div>
-      <ProductGrid
-        selectedCategory={category.data}
-        products={products.data}
-        productsTotal={products.meta.pagination.total}
-      />
+      <ProductGrid products={products.data} />
     </MaxWidthWrapper>
   );
 }

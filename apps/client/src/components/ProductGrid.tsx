@@ -1,19 +1,7 @@
-import { getCategories } from "@/api/api";
-import { CategorySelector } from "./CategorySelector";
 import { ProductCard } from "./ProductCard";
-import { Category, Product } from "@/api";
+import { Product } from "@/api";
 
-const ProductGrid = async ({
-  products,
-  productsTotal,
-  selectedCategory,
-}: {
-  products: Product[];
-  productsTotal: number;
-  selectedCategory?: Category;
-}) => {
-  const categories = await getCategories();
-
+const ProductGrid = async ({ products }: { products: Product[] }) => {
   return (
     <div className="flex-1 overflow-y-auto">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

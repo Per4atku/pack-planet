@@ -89,3 +89,37 @@ export const getPartners = async (): Promise<PartnersApiResponse> => {
 
   return response.data;
 };
+
+export const getLinkedProducts = async ({
+  productSkus,
+}: {
+  productSkus: string[];
+}): Promise<ProductsApiResponse> => {
+  if (!Array.isArray(productSkus)) {
+    throw new TypeError("productSkus must be an array of strings");
+  }
+
+  if (productSkus.length === 0) {
+    return {
+      data: [],
+      meta: { pagination: { page: 1, pageSize: 0, pageCount: 0, total: 0 } },
+    } as unknown as ProductsApiResponse;
+  }
+  const params = new URLSearchParams();
+  productSkus.forEach((sku, idx) => {
+    params.append(`filters[sku][$in][${idx}]`, sku);
+  });
+
+  params.append("populate", "*");
+  const url = `/products?${params.toString()}`;
+  try {
+    const response: { data: ProductsApiResponse } = await httpClient.get(url, {
+      next: { revalidate: ISR_REVALIDATE },
+    });
+
+    return response.data;
+  } catch (err) {
+    console.error("getLinkedProducts error:", err);
+    throw err;
+  }
+};

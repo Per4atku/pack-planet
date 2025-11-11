@@ -13,6 +13,9 @@ import { blocksToString } from "@/lib/utils";
 
 import { Metadata } from "next";
 import { Image } from "@/api";
+import LinkedProducts from "@/components/LinkedProducts";
+import { Suspense } from "react";
+import { Spinner } from "@/components/ui/spinner";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -127,7 +130,7 @@ export default async function ProductPage({
           __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <article className="grid grid-cols-1 sm:grid-cols-2">
+      <article className="grid gap-4 grid-cols-1 sm:grid-cols-2">
         {/* Image Carousel */}
         <ImageCarousel images={product.images} />
 
@@ -186,6 +189,26 @@ export default async function ProductPage({
           )}
         </div>
       </article>
+      {Array.isArray(product.linked_products) &&
+        product.linked_products.length > 0 && (
+          <Suspense
+            fallback={
+              <div className="h-[385px] w-full flex items-center justify-center">
+                <Spinner className="text-eco-green w-12 h-12" />
+              </div>
+            }
+          >
+            <LinkedProducts
+              className="col-start-1 col-end-3 mt-12 "
+              linkedProducts={
+                product.linked_products as Array<{
+                  id: number;
+                  sku: string;
+                }>
+              }
+            />
+          </Suspense>
+        )}
     </>
   );
 }
