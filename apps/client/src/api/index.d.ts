@@ -31,6 +31,8 @@ interface Product {
   unit?: string | null;
   images?: Image[];
   category?: Category | null;
+  featured_product: boolean;
+  linked_products?: Array<{ id: number; sku: string }>;
 }
 
 /* ---------- Category ---------- */
