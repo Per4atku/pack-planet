@@ -33,7 +33,7 @@ const PaginationControls = ({
   };
 
   return (
-    <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none">
+    <div className="fixed px-4 bottom-10 w-full max-w-sm left-1/2 transform -translate-x-1/2 z-50 pointer-events-none">
       <div className="bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-6 flex flex-wrap justify-center gap-2 transform hover:-translate-y-1 transition-all duration-200 pointer-events-auto">
         <Pagination>
           <PaginationContent className="flex flex-wrap justify-center gap-1">
