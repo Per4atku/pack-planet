@@ -16,15 +16,6 @@ const ProductGrid = async ({
 
   return (
     <div className="flex-1 overflow-y-auto">
-      <div className="mb-4">
-        <div className="flex justify-between">
-          <div className="text-2xl font-bold text-gray-900">
-            <CategorySelector categories={categories.data} />
-          </div>
-        </div>
-        <p className="text-gray-600 mt-1">{productsTotal} товаров найдено</p>
-      </div>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />

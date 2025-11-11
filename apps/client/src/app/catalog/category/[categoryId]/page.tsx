@@ -3,6 +3,7 @@ import {
   getCategoryById,
   getProductsFilteredByCategory,
 } from "@/api/api";
+import { CategorySelector } from "@/components/CategorySelector";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ProductGrid from "@/components/ProductGrid";
 import { Metadata } from "next";
@@ -62,8 +63,20 @@ export default async function CatalogPage({
     categoryId,
   });
 
+  const categories = await getCategories();
+
   return (
     <MaxWidthWrapper className="mt-12">
+      <div className="mb-4">
+        <div className="flex justify-between">
+          <div className="text-2xl font-bold text-gray-900">
+            <CategorySelector categories={categories.data} />
+          </div>
+        </div>
+        <p className="text-gray-600 mt-1">
+          {products.meta.pagination.total} товаров найдено
+        </p>
+      </div>
       <ProductGrid
         selectedCategory={category.data}
         products={products.data}
