@@ -2,7 +2,9 @@ import FeaturedProducts from "@/components/FeaturedProducts";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Partners from "@/components/Partners";
+import { Spinner } from "@/components/ui/spinner";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -37,7 +39,15 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <FeaturedProducts />
+      <Suspense
+        fallback={
+          <div className="h-[510px] w-full items-center justify-center">
+            <Spinner className="text-eco-green w-12 h-12" />
+          </div>
+        }
+      >
+        <FeaturedProducts />
+      </Suspense>
       <Partners />
 
       <Footer />
