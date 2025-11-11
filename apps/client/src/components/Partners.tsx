@@ -8,7 +8,7 @@ const Partners = async () => {
   const partners = await getPartners();
 
   return (
-    <MaxWidthWrapper className="my-24">
+    <MaxWidthWrapper className="mt-24">
       <h2 className="text-5xl font-bold text-center mb-20">Мы Работаем c</h2>
       <div className="grid gap-4 mt-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {partners.data.map((partner) => (

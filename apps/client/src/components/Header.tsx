@@ -6,6 +6,7 @@ import { cleanPhone, phones } from "@/data/phones";
 import Link from "next/link";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { Button } from "./ui/button";
+import navLinks from "@/data/navLinks";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,30 +40,15 @@ const Header = () => {
 
               {/* Desktop Navigation */}
               <nav className="hidden md:flex items-center space-x-8">
-                <Link
-                  href="/"
-                  className="text-foreground hover:text-eco-green transition-colors"
-                >
-                  Главная
-                </Link>
-                <Link
-                  href="/catalog"
-                  className="text-foreground hover:text-eco-green transition-colors"
-                >
-                  Каталог
-                </Link>
-                <Link
-                  href="#about"
-                  className="text-foreground hover:text-eco-green transition-colors"
-                >
-                  О нас
-                </Link>
-                <Link
-                  href="#contact"
-                  className="text-foreground hover:text-eco-green transition-colors"
-                >
-                  Контакты
-                </Link>
+                {navLinks.map((navLink) => (
+                  <Link
+                    key={navLink.href}
+                    href={navLink.href}
+                    className="text-foreground hover:text-eco-green transition-colors"
+                  >
+                    {navLink.name}
+                  </Link>
+                ))}
               </nav>
 
               {/* Contact Info */}
@@ -101,34 +87,16 @@ const Header = () => {
         }`}
       >
         <nav className="flex flex-col space-y-4 container mx-auto px-4">
-          <Link
-            href="/"
-            onClick={() => setIsMenuOpen(false)}
-            className="text-foreground hover:text-eco-green transition-colors"
-          >
-            Главная
-          </Link>
-          <Link
-            href="/catalog"
-            onClick={() => setIsMenuOpen(false)}
-            className="text-foreground hover:text-eco-green transition-colors"
-          >
-            Каталог
-          </Link>
-          <Link
-            href="#about"
-            onClick={() => setIsMenuOpen(false)}
-            className="text-foreground hover:text-eco-green transition-colors"
-          >
-            О нас
-          </Link>
-          <Link
-            href="#contact"
-            onClick={() => setIsMenuOpen(false)}
-            className="text-foreground hover:text-eco-green transition-colors"
-          >
-            Контакты
-          </Link>
+          {navLinks.map((navLink) => (
+            <Link
+              key={navLink.href}
+              href={navLink.href}
+              onClick={() => setIsMenuOpen(false)}
+              className="text-foreground hover:text-eco-green transition-colors"
+            >
+              {navLink.name}
+            </Link>
+          ))}
           <div className="pt-4 border-t border-border">
             <div className="flex items-center space-x-2 text-sm mb-4">
               <Phone className="w-4 h-4 text-eco-green" />

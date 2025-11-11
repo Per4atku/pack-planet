@@ -3,7 +3,7 @@ import Image from "next/image";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 
 const Delivery = () => (
-  <MaxWidthWrapper className="mb-20">
+  <MaxWidthWrapper className="mb-20 pt-24" id="delivery">
     <div className="grid grid-cols-1 sm:grid-cols-2">
       <Image
         className="w-full max-w-xs justify-self-center row-start-2 sm:row-start-1 sm:max-w-lg"
