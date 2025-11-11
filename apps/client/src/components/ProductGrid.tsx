@@ -1,13 +1,21 @@
+import { ReactNode } from "react";
 import { ProductCard } from "./ProductCard";
 import { Product } from "@/api";
 
-const ProductGrid = async ({ products }: { products: Product[] }) => {
+const ProductGrid = async ({
+  products,
+  children,
+}: {
+  products: Product[];
+  children?: ReactNode;
+}) => {
   return (
-    <div className="flex-1 overflow-y-auto">
+    <div className="flex-1 overflow">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
+        {children}
       </div>
 
       {products.length === 0 && (

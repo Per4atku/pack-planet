@@ -123,3 +123,12 @@ export const getLinkedProducts = async ({
     throw err;
   }
 };
+
+export const getFeaturedProducts = async (): Promise<ProductsApiResponse> => {
+  const response: { data: ProductsApiResponse } = await httpClient.get(
+    `/products?filters[featured_product][$eq]=true&populate=*`,
+    { next: { revalidate: ISR_REVALIDATE } }
+  );
+
+  return response.data;
+};

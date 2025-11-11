@@ -1,3 +1,4 @@
+import FeaturedProducts from "@/components/FeaturedProducts";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Partners from "@/components/Partners";
@@ -36,7 +37,9 @@ export default async function Home() {
   return (
     <>
       <Hero />
+      <FeaturedProducts />
       <Partners />
+
       <Footer />
     </>
   );
