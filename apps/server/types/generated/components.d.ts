@@ -50,6 +50,17 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedSku extends Struct.ComponentSchema {
+  collectionName: 'components_shared_skus';
+  info: {
+    displayName: 'sku';
+    icon: 'cursor';
+  };
+  attributes: {
+    sku: Schema.Attribute.String;
+  };
+}
+
 export interface SharedSlider extends Struct.ComponentSchema {
   collectionName: 'components_shared_sliders';
   info: {
@@ -69,6 +80,7 @@ declare module '@strapi/strapi' {
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
+      'shared.sku': SharedSku;
       'shared.slider': SharedSlider;
     }
   }

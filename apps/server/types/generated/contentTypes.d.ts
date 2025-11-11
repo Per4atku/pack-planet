@@ -543,7 +543,9 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Blocks;
+    featured_product: Schema.Attribute.Boolean;
     images: Schema.Attribute.Media<'images' | 'files', true>;
+    linked_products: Schema.Attribute.Component<'shared.sku', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

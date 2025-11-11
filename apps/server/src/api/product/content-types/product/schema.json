@@ -75,6 +75,14 @@
     },
     "description": {
       "type": "blocks"
+    },
+    "featured_product": {
+      "type": "boolean"
+    },
+    "linked_products": {
+      "type": "component",
+      "component": "shared.sku",
+      "repeatable": true
     }
   }
 }

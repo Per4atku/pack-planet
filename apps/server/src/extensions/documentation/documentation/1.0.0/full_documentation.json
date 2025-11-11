@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-11-10T12:05:26.207Z"
+    "x-generation-date": "2025-11-11T01:26:00.025Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -4479,6 +4479,15 @@
                 "example": "string or id"
               },
               "description": {},
+              "featured_product": {
+                "type": "boolean"
+              },
+              "linked_products": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SharedSkuComponent"
+                }
+              },
               "locale": {
                 "type": "string"
               },
@@ -5240,6 +5249,15 @@
             }
           },
           "description": {},
+          "featured_product": {
+            "type": "boolean"
+          },
+          "linked_products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SharedSkuComponent"
+            }
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -5455,6 +5473,15 @@
                   }
                 },
                 "description": {},
+                "featured_product": {
+                  "type": "boolean"
+                },
+                "linked_products": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SharedSkuComponent"
+                  }
+                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
@@ -5519,6 +5546,17 @@
           },
           "meta": {
             "type": "object"
+          }
+        }
+      },
+      "SharedSkuComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "sku": {
+            "type": "string"
           }
         }
       },
