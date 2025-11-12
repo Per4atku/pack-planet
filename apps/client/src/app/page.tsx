@@ -1,3 +1,4 @@
+import ContactSection from "@/components/ContactSection";
 import Delivery from "@/components/Delivery";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import Footer from "@/components/Footer";
@@ -51,7 +52,7 @@ export default async function Home() {
       </Suspense>
       <Partners />
       <Delivery />
-
+      <ContactSection />
       <Footer />
     </>
   );
