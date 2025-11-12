@@ -17,7 +17,7 @@ const Delivery = () => (
         <h2 className="font-bold text-5xl">Доставка</h2>
         <div className="text-eco-green font-extrabold flex items-center">
           <div className="text-6xl pr-2">400₽</div>
-          <div className="text-lg">во все регионы Владивостока</div>
+          <div className="text-lg">во все районы Владивостока</div>
         </div>
         <ul className=" list-disc mt-6 ml-5">
           <li className="font-medium text-xl">
@@ -26,7 +26,7 @@ const Delivery = () => (
           </li>
           <li className="font-medium text-xl mt-2">
             Бесплатная доставка <span className="text-eco-green">от 3000₽</span>{" "}
-            в чеке (Остальные регионы){" "}
+            в чеке (Остальные районы){" "}
           </li>
         </ul>
       </div>

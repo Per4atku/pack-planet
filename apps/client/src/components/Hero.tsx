@@ -1,5 +1,4 @@
 import { buttonVariants } from "@/components/ui/button";
-import { cleanPhone, phones } from "@/data/phones";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Phone } from "lucide-react";
 import Image from "next/image";
