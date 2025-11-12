@@ -1,6 +1,7 @@
 import { buttonVariants } from "@/components/ui/button";
+import { cleanPhone, phones } from "@/data/phones";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -35,14 +36,22 @@ const Hero = () => {
             доставка.
           </p>
 
-          {/* Quick Contact Info */}
+          {/* Quick Contact Info
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto text-sm">
             <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 shadow-lg mx-12 md:mx-0 ">
               <h3 className="font-bold text-lg text-eco-green mb-2">
                 📞 Телефоны
               </h3>
-              <p>8 (800) 234-78-75</p>
-              <p>+7 (423) 244-65-55</p>
+              {phones.map((phone, index) => (
+                <div key={index}>
+                  <a
+                    href={`tel:${cleanPhone(phone)}`}
+                    className="hover:text-eco-green transition-colors"
+                  >
+                    {phone}
+                  </a>
+                </div>
+              ))}
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 shadow-lg mx-12 md:mx-0">
               <h3 className="font-bold text-lg text-eco-green mb-2">
@@ -58,18 +67,28 @@ const Hero = () => {
               <p>Пн-Пт: 10:00–18:00</p>
               <p>Сб-Вс: 10:00–17:00</p>
             </div>
-          </div>
+          </div> */}
 
-          <div>
+          <div className="flex flex-col mt-12 gap-4 items-center md:flex-row md:justify-center md:items-start">
             <Link
               href={"/catalog"}
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "mt-12 p-6 px-12 text-xl font-medium"
+                "rounded-2xl p-6 text-lg font-medium max-w-xs w-full md:py-7 md:text-xl"
               )}
             >
               <ArrowRight />
               Перейти в Каталог
+            </Link>
+            <Link
+              href={"/#contacts"}
+              className={cn(
+                buttonVariants({ size: "lg", variant: "outline" }),
+                " rounded-2xl p-6 text-lg font-medium max-w-xs w-full md:py-7 md:text-xl"
+              )}
+            >
+              <Phone />
+              Связаться с Нами
             </Link>
           </div>
         </div>
