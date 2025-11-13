@@ -30,6 +30,7 @@ export default {
       // 'zh-Hans',
       // 'zh',
     ],
+    watchIgnoreFiles: ["**/config/sync/**"],
     translations: {
       ru: {
         // Общие элементы интерфейса

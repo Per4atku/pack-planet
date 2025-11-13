@@ -1,0 +1,341 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::product.product",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "documentId",
+      "defaultSortOrder": "ASC",
+      "defaultSortBy": "id"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "sku": {
+        "edit": {
+          "label": "Артикул",
+          "description": "Артикул Товара (например, СТ903, МУ249)",
+          "placeholder": "Артикул",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "sku",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "name": {
+        "edit": {
+          "label": "Название",
+          "description": "Название Товара",
+          "placeholder": "Название",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "name",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "price": {
+        "edit": {
+          "label": "Цена",
+          "description": "Цена Товара (в розницу)",
+          "placeholder": "Цена",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "price",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "unit": {
+        "edit": {
+          "label": "Единица Товара",
+          "description": "(шт, упак)",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "unit",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "images": {
+        "edit": {
+          "label": "Картинки Товара",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "images",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "wholesale": {
+        "edit": {
+          "label": "Предусмотрен Опт?",
+          "description": "Предусмотрена ли оптовая продажа товара (от N кол-ва)",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "wholesale",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "wholesale_price": {
+        "edit": {
+          "label": "Оптовая Цена",
+          "description": "Оптовая цена товара за единицу (шт, упак)",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "wholesale_price",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "wholesale_min_qty": {
+        "edit": {
+          "label": "Минимальный Объем Оптовой Продажи",
+          "description": "( минимальное количество товара в его единице измерения, от которого предусмотрена оптовая цена)",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "wholesale_min_qty",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "category": {
+        "edit": {
+          "label": "Категория Товара",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "Name"
+        },
+        "list": {
+          "label": "category",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "description": {
+        "edit": {
+          "label": "Описание Товара",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "featured_product": {
+        "edit": {
+          "label": "Хит-Товар?",
+          "description": "Будет ли отображаться 🔥 на карточке товара и будет ли он отображаться на главной странице, как Популярный Товар",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "featured_product",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "linked_products": {
+        "edit": {
+          "label": "Сопутствующие Товары (указать артикулы)",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "linked_products",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdBy": {
+        "edit": {
+          "label": "createdBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "createdBy",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedBy": {
+        "edit": {
+          "label": "updatedBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "updatedBy",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "documentId": {
+        "edit": {},
+        "list": {
+          "label": "documentId",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "sku",
+        "name",
+        "images",
+        "price",
+        "unit"
+      ],
+      "edit": [
+        [
+          {
+            "name": "sku",
+            "size": 6
+          },
+          {
+            "name": "name",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "price",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "images",
+            "size": 6
+          },
+          {
+            "name": "wholesale",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "wholesale_price",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "unit",
+            "size": 6
+          },
+          {
+            "name": "category",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "wholesale_min_qty",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "description",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "featured_product",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "linked_products",
+            "size": 12
+          }
+        ]
+      ]
+    },
+    "uid": "api::product.product"
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}
