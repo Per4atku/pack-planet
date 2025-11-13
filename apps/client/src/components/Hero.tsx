@@ -30,9 +30,7 @@ const Hero = () => {
           </h1>
 
           <p className="text-lg md:text-xl text-foreground/80 mb-8 max-w-3xl mx-auto">
-            Одноразовая посуда и упаковка для HoReCa, пищевого производства и
-            розничной торговли. Широкий ассортимент, приятные цены, быстрая
-            доставка.
+            Одноразовая посуда и упаковка. Широкий ассортимент, быстрая доставка
           </p>
 
           {/* Quick Contact Info
@@ -73,7 +71,7 @@ const Hero = () => {
               href={"/catalog"}
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "rounded-2xl p-6 text-lg font-medium max-w-xs w-full md:py-7 md:text-xl"
+                "rounded-2xl p-6 text-lg font-medium max-w-xs w-full md:text-xl"
               )}
             >
               <ArrowRight />
@@ -83,7 +81,7 @@ const Hero = () => {
               href={"/#contacts"}
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                " rounded-2xl p-6 text-lg font-medium max-w-xs w-full md:py-7 md:text-xl"
+                " rounded-2xl p-6 text-lg font-medium max-w-xs w-full  md:text-xl"
               )}
             >
               <Phone />
