@@ -10,5 +10,14 @@
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {}
+  "attributes": {
+    "file": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    }
+  }
 }
