@@ -1,6 +1,6 @@
 const navLinks = [
-  { name: "Главная", href: "/" },
   { name: "Каталог", href: "/catalog" },
+  { name: "Прайс-Лист", href: "/#price-list" },
   { name: "Условия Доставки", href: "/#delivery" },
   { name: "Контакты", href: "/#contacts" },
 ];

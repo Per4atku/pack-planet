@@ -9,7 +9,7 @@ const Partners = async () => {
 
   return (
     <MaxWidthWrapper className="mt-24">
-      <h2 className="text-5xl font-bold text-center mb-20">Мы Работаем c</h2>
+      <h2 className="text-5xl font-bold text-center mb-20">Наши Партнеры</h2>
       <div className="grid gap-4 mt-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {partners.data.map((partner) => (
           <Card key={partner.documentId}>
