@@ -6,6 +6,7 @@ import {
   PartnersApiResponse,
   Product,
   ProductsApiResponse,
+  Image,
 } from ".";
 
 const ISR_REVALIDATE = 60; // seconds
@@ -21,6 +22,20 @@ export const getProducts = async ({
     `/products?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
     { next: { revalidate: ISR_REVALIDATE } }
   );
+
+  return response.data;
+};
+
+export const getPriceListURL = async (): Promise<{
+  data: { file: Image };
+  meta: unknown;
+}> => {
+  const response: { data: { data: { file: Image }; meta: unknown } } =
+    await httpClient.get(`/price-list?populate=file`, {
+      next: { revalidate: ISR_REVALIDATE },
+    });
+
+  console.log(response.data);
 
   return response.data;
 };

@@ -3,8 +3,13 @@ import MaxWidthWrapper from "./MaxWidthWrapper";
 import priceListImage from "@/assets/price-download.png";
 import Link from "next/link";
 import { Download } from "lucide-react";
+import { getPriceListURL } from "@/api/api";
 
-const PriceListSection = () => {
+const PriceListSection = async () => {
+  const priceListResponse = await getPriceListURL();
+
+  const priceListURL = priceListResponse.data.file.url;
+
   return (
     <MaxWidthWrapper className="mt-24 flex flex-col justify-between items-center sm:flex-row">
       <div className="max-w-xl flex flex-col gap-6 ml-18">
@@ -49,7 +54,7 @@ const PriceListSection = () => {
         {/* CTA */}
         <div className="flex items-center gap-4 mt-2">
           <Link
-            href="/price-list.pdf"
+            href={priceListURL}
             className="inline-flex gap-4 items-center justify-center rounded-xl bg-primary px-6 py-3 text-lg font-medium text-primary-foreground hover:opacity-90 transition"
             download
           >
