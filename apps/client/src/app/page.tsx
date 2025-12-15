@@ -4,6 +4,7 @@ import FeaturedProducts from "@/components/FeaturedProducts";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Partners from "@/components/Partners";
+import PriceListSection from "@/components/PriceListSection";
 import { Spinner } from "@/components/ui/spinner";
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -50,6 +51,7 @@ export default async function Home() {
       >
         <FeaturedProducts />
       </Suspense>
+      <PriceListSection />
       <Partners />
       <Delivery />
       <ContactSection />

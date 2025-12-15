@@ -7,6 +7,9 @@
     "build:strapi": "pnpm --filter strapi run build",
     "build:next": "pnpm --filter nextjs build"
   },
-  "devDependencies": {},
-  "packageManager": "pnpm@10.15.1"
+  "packageManager": "pnpm@10.15.1",
+  "dependencies": {
+    "next": "^16.0.10",
+    "react": "^19.2.3"
+  }
 }
