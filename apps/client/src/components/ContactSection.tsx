@@ -54,13 +54,17 @@ const ContactSection = () => {
                   <div className="font-semibold text-gray-900">Телефоны</div>
                   <div className="space-y-1 text-gray-600">
                     {phones.map((phone, index) => (
-                      <div key={index}>
+                      <div
+                        key={index}
+                        className="flex items-center gap-2 relative"
+                      >
                         <a
                           href={`tel:${cleanPhone(phone)}`}
                           className="hover:text-eco-green transition-colors"
                         >
                           {phone}
                         </a>
+                        <span className="ripple w-3 h-3 rounded-full "></span>
                       </div>
                     ))}
                   </div>
@@ -72,12 +76,15 @@ const ContactSection = () => {
                 <div>
                   <div className="font-semibold text-gray-900">Почта</div>
                   <div className="text-gray-600">
-                    <a
-                      href="mailto:pack-w@mail.ru"
-                      className="hover:text-eco-green transition-colors"
-                    >
-                      pack-w@mail.ru
-                    </a>
+                    <div className="flex items-center gap-2 relative">
+                      <a
+                        href="mailto:pack-w@mail.ru"
+                        className="hover:text-eco-green transition-colors"
+                      >
+                        pack-w@mail.ru
+                      </a>
+                      <span className="ripple w-3 h-3 rounded-full"></span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -87,7 +94,7 @@ const ContactSection = () => {
               href={"https://yandex.ru/maps/-/CHSaYA0b"}
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "w-full bg-eco-green hover:bg-eco-green/90 cursoir-pointer text-white py-5 text-base sm:text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                "w-full bg-eco-green hover:bg-eco-green/90 cursor-pointer text-white py-5 text-base sm:text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
               )}
             >
               <MapPin className="size-4" /> Перейти в Яндекс.Карты
