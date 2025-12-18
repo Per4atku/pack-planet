@@ -21,19 +21,22 @@ import { ScrollArea } from "./ui/scroll-area";
 
 export function CategorySelector({ categories }: { categories: Category[] }) {
   const pathname = usePathname();
-  const currentCategoryId = pathname.split("/").pop(); // gets the last part of the path
+  const currentCategoryId = pathname.split("/").pop();
 
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline">
+        <Button variant="outline" className="whitespace-nowrap">
           <Menu />
           {categories.find((c) => c.documentId === currentCategoryId)?.Name ||
             "Все Товары"}
         </Button>
       </SheetTrigger>
 
-      <SheetContent side="left" className="flex flex-col h-full">
+      <SheetContent
+        side="left"
+        className="flex flex-col h-full max-w-full overflow-x-hidden"
+      >
         <SheetHeader>
           <SheetTitle>Выбор категории</SheetTitle>
           <SheetDescription>
@@ -55,8 +58,8 @@ export function CategorySelector({ categories }: { categories: Category[] }) {
 
           <Separator />
 
-          <ScrollArea className="flex-1 overflow-scroll">
-            <div className="flex flex-col gap-2 overflow-scroll">
+          <ScrollArea className="flex-1">
+            <div className="flex flex-col gap-2">
               {categories.map((category) => {
                 const isActive = category.documentId === currentCategoryId;
                 return (
