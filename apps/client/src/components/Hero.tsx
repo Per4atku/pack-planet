@@ -56,7 +56,7 @@ const Hero = () => {
           </p>
 
           {/* CTA */}
-          <div className="flex flex-col gap-4 mt-14 md:flex-row md:justify-center">
+          <div className="flex items-center flex-col gap-4 mt-14 md:flex-row md:justify-center">
             <Link
               href="/#price-list"
               className={cn(
