@@ -14,7 +14,7 @@ const FeaturedProducts = async () => {
   if (featuredProducts.meta.pagination.total >= 1)
     return (
       <MaxWidthWrapper className="my-24">
-        <h2 className="text-section-title mb-20 text-center">
+        <h2 className="text-section-title mb-12 text-center">
           Популярные Товары
         </h2>
         <ProductGrid products={featuredProducts.data}>

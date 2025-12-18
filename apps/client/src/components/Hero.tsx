@@ -9,7 +9,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative  min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Background */}
       <div className="absolute inset-0">
@@ -31,7 +31,8 @@ const Hero = () => {
           </h1>
 
           <p className="text-lg md:text-xl text-foreground/80 mb-8 max-w-3xl mx-auto">
-            Одноразовая посуда и упаковка. Широкий ассортимент, быстрая доставка
+            Одноразовая посуда и упаковка. <br />
+            Быстрая доставка
           </p>
 
           {/* Quick Contact Info
@@ -69,14 +70,14 @@ const Hero = () => {
 
           <div className="flex flex-col mt-12 gap-4 items-center md:flex-row md:justify-center md:items-start">
             <Link
-              href={"/catalog"}
+              href={"/#price-list"}
               className={cn(
                 buttonVariants({ size: "lg" }),
                 "rounded-2xl p-6 text-lg font-medium max-w-xs w-full md:text-xl"
               )}
             >
               <ArrowRight />
-              Перейти в Каталог
+              Прайс-лист
             </Link>
             <Link
               href={"/#contacts"}
