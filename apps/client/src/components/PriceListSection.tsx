@@ -74,6 +74,68 @@ const PriceListSection = async () => {
           </div>
         </div>
       </MaxWidthWrapper>
+      <MaxWidthWrapper
+        id="price-list"
+        className="pt-24 hidden justify-between items-center sm:flex"
+      >
+        <div className="w-full flex flex-col gap-6 ">
+          {/* Heading */}
+          <div className="flex flex-col ">
+            <h2 className="text-section-title ">Прайс-Лист</h2>
+          </div>
+
+          {/* What’s inside */}
+          {/* <ul className="grid grid-cols-2 gap-3 text-base">
+          <li className="flex items-center gap-2">
+            <span className="text-primary">✓</span>
+            Артикулы и названия
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-primary">✓</span>
+            Оптовые цены
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-primary">✓</span>
+            Минимальные партии
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-primary">✓</span>
+            Форматы упаковки
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-primary">✓</span>
+            Статус наличия
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-primary">✓</span>
+            Условия сотрудничества
+          </li>
+        </ul> */}
+
+          {/* CTA */}
+          <div className="flex items-center gap-4 ">
+            <Link
+              href={priceListURL}
+              className={cn(
+                buttonVariants({ size: "lg" }),
+                "w-full max-w-[350px]"
+              )}
+              download
+            >
+              <Download />
+              Скачать прайс-лист
+            </Link>
+          </div>
+        </div>
+        <Image
+          className="aspect-square w-[300px] md:w-[400px] lg:w-[500px] self-center"
+          style={{ rotate: "10deg" }}
+          src={priceListImage}
+          alt=""
+          width={500}
+          height={500}
+        />
+      </MaxWidthWrapper>
     </>
   );
 };
