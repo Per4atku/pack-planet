@@ -20,7 +20,7 @@ const PriceListSection = async () => {
       <div className="max-w-xl flex flex-col gap-6 md:ml-12">
         {/* Heading */}
         <div className="flex flex-col ">
-          <h2 className="font-bold text-5xl leading-tight">Прайс-Лист</h2>
+          <h2 className="text-section-title leading-tight">Прайс-Лист</h2>
           <p className="text-muted-foreground text-lg">
             Актуальные цены и условия для быстрого расчёта закупки
           </p>

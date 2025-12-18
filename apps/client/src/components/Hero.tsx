@@ -25,7 +25,7 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center py-6">
         <div className="max-w-4xl animate-fade-in">
-          <h1 className="text-5xl text-center md:text-6xl font-bold mb-6 text-foreground ">
+          <h1 className="text-hero-title text-center  mb-6 text-foreground ">
             Ваш надежный поставщик
             <span className="text-eco-green"> упаковки</span>
           </h1>

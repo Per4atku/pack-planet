@@ -159,6 +159,13 @@
     @apply border-gray-200 my-6;
   }
 
+  .text-hero-title {
+    @apply text-5xl font-bold md:text-6xl
+  }
+  .text-section-title {
+    @apply text-4xl font-bold md:text-5xl
+  }
+
 
 }
 

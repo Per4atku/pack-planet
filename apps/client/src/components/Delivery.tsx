@@ -14,9 +14,9 @@ const Delivery = () => (
         alt="Truck Image"
       />
       <div className="flex flex-col justify-center row-start-1 ">
-        <h2 className="font-bold text-5xl">Доставка</h2>
+        <h2 className="text-section-title">Доставка</h2>
         <div className="text-eco-green font-extrabold flex items-center">
-          <div className="text-6xl pr-2">400₽</div>
+          <div className="text-5xl pr-2">400₽</div>
           <div className="text-lg">во все районы Владивостока</div>
         </div>
         <ul className=" list-disc mt-6 ml-5">
