@@ -54,17 +54,14 @@ const ContactSection = () => {
                   <div className="font-semibold text-gray-900">Телефоны</div>
                   <div className="space-y-1 text-gray-600">
                     {phones.map((phone, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center gap-2 relative"
-                      >
+                      <div key={index} className="flex items-center gap-2">
                         <a
                           href={`tel:${cleanPhone(phone)}`}
-                          className="hover:text-eco-green transition-colors"
+                          className="hover:text-eco-green transition-colors flex items-center gap-2"
                         >
                           {phone}
+                          <span className="ripple w-3 h-3 rounded-full"></span>
                         </a>
-                        <span className="ripple w-3 h-3 rounded-full "></span>
                       </div>
                     ))}
                   </div>
@@ -76,14 +73,14 @@ const ContactSection = () => {
                 <div>
                   <div className="font-semibold text-gray-900">Почта</div>
                   <div className="text-gray-600">
-                    <div className="flex items-center gap-2 relative">
+                    <div className="flex items-center gap-2">
                       <a
                         href="mailto:pack-w@mail.ru"
-                        className="hover:text-eco-green transition-colors"
+                        className="hover:text-eco-green transition-colors flex items-center gap-2"
                       >
                         pack-w@mail.ru
+                        <span className="ripple w-3 h-3 rounded-full"></span>
                       </a>
-                      <span className="ripple w-3 h-3 rounded-full"></span>
                     </div>
                   </div>
                 </div>
