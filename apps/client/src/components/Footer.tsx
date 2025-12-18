@@ -1,5 +1,7 @@
 import { phones } from "@/data/phones";
+import navLinks from "@/data/navLinks";
 import { Phone, Mail, MapPin } from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -23,42 +25,20 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Navigation */}
+          {/* Navigation (linked to navLinks) */}
           <div>
             <h4 className="font-semibold mb-4 text-eco-green">Навигация</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  href="#home"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Главная
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#products"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Продукция
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#about"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  О нас
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#contact"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Контакты
-                </a>
-              </li>
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -97,7 +77,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+          <div className="flex justify-center text-sm text-gray-400">
             <p>
               &copy; {new Date().getFullYear()} Планета Упаковки. Все права
               защищены.
