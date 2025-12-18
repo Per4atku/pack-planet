@@ -74,11 +74,10 @@ export const ProductCard = ({ product }: { product: Product }) => {
           </div>
         </Link>
 
-        <Link
-          href={`/catalog/category/${product.category?.documentId || ""}`}
-          className="text-xs px-4 italic hover:underline"
-        >
-          ({product.category?.Name})
+        <Link href={`/catalog/category/${product.category?.documentId || ""}`}>
+          <div className="text-xs px-4 italic hover:underline">
+            ({product.category?.Name})
+          </div>
         </Link>
       </CardContent>
     </Card>

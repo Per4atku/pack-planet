@@ -54,17 +54,16 @@ export default async function CatalogPage({
   searchParams: Promise<{ page?: string; pageSize?: string }>;
 }) {
   const { categoryId = "y6ennjodlsqhr1gczg694rk8" } = await params;
-
-  const category = await getCategoryById({ categoryId: categoryId || "" });
   const { page = "1", pageSize = "10" } = await searchParams;
 
-  const products = await getProductsFilteredByCategory({
-    page,
-    pageSize,
-    categoryId,
-  });
-
-  const categories = await getCategories();
+  const [products, categories] = await Promise.all([
+    getProductsFilteredByCategory({
+      page,
+      pageSize,
+      categoryId,
+    }),
+    getCategories(),
+  ]);
 
   return (
     <MaxWidthWrapper className="mt-12">

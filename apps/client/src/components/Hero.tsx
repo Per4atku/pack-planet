@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { ArrowRight, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import backgroundImage from "@/assets/background.webp";
 
 const Hero = () => {
   return (
@@ -13,8 +14,8 @@ const Hero = () => {
       {/* Background */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80"
-          alt="Background"
+          src={backgroundImage}
+          alt=""
           fill
           priority
           className="object-cover opacity-10"
@@ -23,8 +24,8 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center py-6">
-        <div className="max-w-4xl mx-auto animate-fade-in">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground leading-tight">
+        <div className="max-w-4xl animate-fade-in">
+          <h1 className="text-5xl text-center md:text-6xl font-bold mb-6 text-foreground ">
             Ваш надежный поставщик
             <span className="text-eco-green"> упаковки</span>
           </h1>

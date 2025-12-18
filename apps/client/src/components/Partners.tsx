@@ -7,6 +7,8 @@ import resolvedImage from "@/lib/resolvedImage";
 const Partners = async () => {
   const partners = await getPartners();
 
+  if (!partners) return <></>;
+
   return (
     <MaxWidthWrapper className="mt-24">
       <h2 className="text-5xl font-bold text-center mb-20">Наши Партнеры</h2>

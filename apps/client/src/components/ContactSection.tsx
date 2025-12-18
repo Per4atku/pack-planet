@@ -87,10 +87,10 @@ const ContactSection = () => {
               href={"https://yandex.ru/maps/-/CHSaYA0b"}
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "w-full bg-eco-green hover:bg-eco-green/90 cursoir-pointer text-white py-5 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                "w-full bg-eco-green hover:bg-eco-green/90 cursoir-pointer text-white py-5 text-base sm:text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
               )}
             >
-              <MapPin className="size-5" /> Перейти в Яндекс.Карты
+              <MapPin className="size-4" /> Перейти в Яндекс.Карты
             </Link>
           </div>
         </div>

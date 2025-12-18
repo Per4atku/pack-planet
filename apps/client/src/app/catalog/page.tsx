@@ -16,8 +16,10 @@ export default async function CatalogPage({
 }) {
   const { page = "1", pageSize = "10" } = await searchParams;
 
-  const products = await getProducts({ page, pageSize });
-  const categories = await getCategories();
+  const [products, categories] = await Promise.all([
+    getProducts({ page, pageSize }),
+    getCategories(),
+  ]);
 
   return (
     <MaxWidthWrapper className="mt-12">

@@ -8,6 +8,9 @@ import { LucideArrowRightCircle } from "lucide-react";
 const FeaturedProducts = async () => {
   const featuredProducts = await getFeaturedProducts();
 
+  if (!featuredProducts || featuredProducts.meta.pagination.total === 0)
+    return <></>;
+
   if (featuredProducts.meta.pagination.total >= 1)
     return (
       <MaxWidthWrapper className="my-24">
