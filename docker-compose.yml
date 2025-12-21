@@ -1,43 +1,51 @@
-services:
-  postgres:
-    image: postgres:15
-    restart: always
-    environment:
-      POSTGRES_DB: strapi
-      POSTGRES_USER: strapi
-      POSTGRES_PASSWORD: strapi
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+version: "3.8"
 
+services:
   strapi:
-    image: artcchi/pack-planet_strapi:latest
-    build:
-      context: .
-      dockerfile: apps/server/Dockerfile
-    restart: always
-    depends_on:
-      - postgres
+    image: ${DOCKER_REGISTRY}/pack-planet-strapi:${IMAGE_TAG:-latest}
+    container_name: pack-planet-strapi
+    restart: unless-stopped
     env_file:
-      - ./apps/server/.env.production
-    volumes:
-      - ./volumes/strapi_data:/app/.tmp # map your SQLite db folder
-      - ./volumes/strapi_uploads:/app/public/uploads
+      - .env.strapi
     ports:
       - "1337:1337"
+    volumes:
+      - ./data/strapi-data:/app/.tmp
+      - ./data/strapi-uploads:/app/public/uploads
+    networks:
+      - pack-planet
+    healthcheck:
+      test:
+        ["CMD-SHELL", "wget --spider -q http://localhost:1337/admin || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 90s
 
-  nextjs:
-    image: artcchi/pack-planet_nextjs:latest
-    build:
-      context: .
-      dockerfile: apps/client/Dockerfile
-    restart: always
-    env_file:
-      - ./apps/client/.env.production
+  client:
+    image: ${DOCKER_REGISTRY}/pack-planet-client:${IMAGE_TAG:-latest}
+    container_name: pack-planet-client
+    restart: unless-stopped
     ports:
       - "3000:3000"
-
+    networks:
+      - pack-planet
     depends_on:
-      - strapi
+      strapi:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:3000 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
 volumes:
-  pgdata:
+  strapi-data:
+    driver: local
+  strapi-uploads:
+    driver: local
+
+networks:
+  pack-planet:
+    driver: bridge

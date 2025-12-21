@@ -1,27 +1,38 @@
 FROM node:20-alpine
 
+# Install dependencies
+RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN apk add --no-cache python3 make g++ sqlite wget
+
 WORKDIR /app
 
-# Enable pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+ENV NODE_ENV=production
 
-# 1️⃣ Copy root workspace files
+# Copy workspace files
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY apps/client/package.json ./apps/client/
+COPY apps/server/package.json ./apps/server/
 
-# 2️⃣ Copy ONLY workspace package.json files
-COPY apps/server/package.json apps/server/package.json
+# Install all dependencies
+RUN pnpm install --frozen-lockfile --filter=server...
 
-# 3️⃣ Install deps (pnpm now sees the server workspace)
-RUN pnpm install --frozen-lockfile
+# Copy server application
+COPY apps/server ./apps/server
 
-# 4️⃣ Copy the rest of the repo
-COPY . .
+# Build Strapi
+WORKDIR /app/apps/server
+RUN pnpm build
 
-# 5️⃣ Build Strapi workspace
-RUN pnpm --filter ./apps/server build
+# Create necessary directories
+RUN mkdir -p .tmp/data public/uploads
+
+# Add non-root user
+RUN addgroup --system --gid 1001 strapi && \
+    adduser --system --uid 1001 strapi && \
+    chown -R strapi:strapi /app
+
+USER strapi
 
 EXPOSE 1337
 
-# 6️⃣ Start Strapi
-CMD ["pnpm", "--filter", "./apps/server", "start"]
-    
+CMD ["pnpm", "start"]

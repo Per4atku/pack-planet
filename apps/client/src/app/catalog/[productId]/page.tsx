@@ -75,19 +75,44 @@ export const revalidate = 60;
 export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
-  const response = await getProducts({ page: "1", pageSize: "25" });
-  const { pageCount } = response.meta.pagination;
-
-  const productIds: string[] = response.data.map((p) => p.documentId);
-
-  // Fetch remaining pages (if any)
-  for (let page = 2; page <= pageCount; page++) {
-    const res = await getProducts({ page: String(page), pageSize: "25" });
-    productIds.push(...res.data.map((p) => p.documentId));
+  // During Docker build, Strapi isn't available - return empty array
+  // Pages will be generated on-demand (ISR)
+  if (!process.env.NEXT_PUBLIC_STRAPI_URL) {
+    console.warn("NEXT_PUBLIC_STRAPI_URL not set, skipping static generation");
+    return [];
   }
 
-  // Return params in required format
-  return productIds.map((id) => ({ productId: id }));
+  try {
+    const response = await getProducts({ page: "1", pageSize: "25" });
+
+    // Check if response is valid
+    if (!response?.meta?.pagination || !response?.data) {
+      console.warn(
+        "Invalid response from getProducts, skipping static generation"
+      );
+      return [];
+    }
+
+    const { pageCount } = response.meta.pagination;
+    const productIds: string[] = response.data.map((p) => p.documentId);
+
+    // Fetch remaining pages (if any)
+    for (let page = 2; page <= pageCount; page++) {
+      const res = await getProducts({ page: String(page), pageSize: "25" });
+      if (res?.data) {
+        productIds.push(...res.data.map((p) => p.documentId));
+      }
+    }
+
+    console.log(`Generated static params for ${productIds.length} products`);
+
+    // Return params in required format
+    return productIds.map((id) => ({ productId: id }));
+  } catch (error) {
+    console.warn("Failed to fetch products for static generation:", error);
+    // Return empty array - pages will be generated on-demand
+    return [];
+  }
 }
 
 export default async function ProductPage({

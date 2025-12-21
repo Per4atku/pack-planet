@@ -8,9 +8,23 @@ import { buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
 
 const PriceListSection = async () => {
-  const priceListResponse = await getPriceListURL();
+  let priceListURL = "#";
+  let isAvailable = false;
 
-  const priceListURL = priceListResponse.data.file.url;
+  try {
+    // Check if Strapi URL is configured
+    if (process.env.NEXT_PUBLIC_STRAPI_URL) {
+      const priceListResponse = await getPriceListURL();
+
+      if (priceListResponse?.data?.file?.url) {
+        priceListURL = priceListResponse.data.file.url;
+        isAvailable = true;
+      }
+    }
+  } catch (error) {
+    console.warn("Failed to fetch price list URL:", error);
+    // Component will render with default values
+  }
 
   return (
     <>
@@ -24,34 +38,6 @@ const PriceListSection = async () => {
             <h2 className="text-section-title text-center">Прайс-Лист</h2>
           </div>
 
-          {/* What’s inside */}
-          {/* <ul className="grid grid-cols-2 gap-3 text-base">
-          <li className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            Артикулы и названия
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            Оптовые цены
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            Минимальные партии
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            Форматы упаковки
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            Статус наличия
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            Условия сотрудничества
-          </li>
-        </ul> */}
-
           <Image
             className="aspect-square w-[300px] md:w-[400px] lg:w-[500px] self-center"
             style={{ rotate: "10deg" }}
@@ -63,14 +49,27 @@ const PriceListSection = async () => {
 
           {/* CTA */}
           <div className="flex items-center gap-4 ">
-            <Link
-              href={priceListURL}
-              className={cn(buttonVariants({ size: "lg" }), "w-full")}
-              download
-            >
-              <Download />
-              Скачать прайс-лист
-            </Link>
+            {isAvailable ? (
+              <Link
+                href={priceListURL}
+                className={cn(buttonVariants({ size: "lg" }), "w-full")}
+                download
+              >
+                <Download />
+                Скачать прайс-лист
+              </Link>
+            ) : (
+              <button
+                className={cn(
+                  buttonVariants({ size: "lg", variant: "secondary" }),
+                  "w-full"
+                )}
+                disabled
+              >
+                <Download />
+                Прайс-лист временно недоступен
+              </button>
+            )}
           </div>
         </div>
       </MaxWidthWrapper>
@@ -84,47 +83,32 @@ const PriceListSection = async () => {
             <h2 className="text-section-title ">Прайс-Лист</h2>
           </div>
 
-          {/* What’s inside */}
-          {/* <ul className="grid grid-cols-2 gap-3 text-base">
-          <li className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            Артикулы и названия
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            Оптовые цены
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            Минимальные партии
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            Форматы упаковки
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            Статус наличия
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            Условия сотрудничества
-          </li>
-        </ul> */}
-
           {/* CTA */}
           <div className="flex items-center gap-4 ">
-            <Link
-              href={priceListURL}
-              className={cn(
-                buttonVariants({ size: "lg" }),
-                "w-full max-w-[350px]"
-              )}
-              download
-            >
-              <Download />
-              Скачать прайс-лист
-            </Link>
+            {isAvailable ? (
+              <Link
+                href={priceListURL}
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "w-full max-w-[350px]"
+                )}
+                download
+              >
+                <Download />
+                Скачать прайс-лист
+              </Link>
+            ) : (
+              <button
+                className={cn(
+                  buttonVariants({ size: "lg", variant: "secondary" }),
+                  "w-full max-w-[350px]"
+                )}
+                disabled
+              >
+                <Download />
+                Прайс-лист временно недоступен
+              </button>
+            )}
           </div>
         </div>
         <Image

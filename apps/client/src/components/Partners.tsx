@@ -5,9 +5,22 @@ import Image from "next/image";
 import resolvedImage from "@/lib/resolvedImage";
 
 const Partners = async () => {
-  const partners = await getPartners();
+  let partners = null;
 
-  if (!partners) return <></>;
+  try {
+    // Check if Strapi URL is configured
+    if (process.env.NEXT_PUBLIC_STRAPI_URL) {
+      partners = await getPartners();
+    }
+  } catch (error) {
+    console.warn("Failed to fetch partners:", error);
+    // Component will render nothing or fallback
+  }
+
+  // Return nothing if no partners data
+  if (!partners?.data || partners.data.length === 0) {
+    return null;
+  }
 
   return (
     <MaxWidthWrapper className="mt-24">

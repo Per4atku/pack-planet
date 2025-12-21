@@ -39,12 +39,36 @@ export const revalidate = 60;
 export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
-  const response = await getCategories();
-  const categories = response.data;
+  // During Docker build, Strapi isn't available - return empty array
+  // Pages will be generated on-demand (ISR)
+  if (!process.env.NEXT_PUBLIC_STRAPI_URL) {
+    console.warn("NEXT_PUBLIC_STRAPI_URL not set, skipping static generation");
+    return [];
+  }
 
-  return categories.map((cat) => ({
-    categoryId: cat.documentId,
-  }));
+  try {
+    const response = await getCategories();
+
+    // Check if response is valid
+    if (!response?.data) {
+      console.warn(
+        "Invalid response from getCategories, skipping static generation"
+      );
+      return [];
+    }
+
+    const categories = response.data;
+
+    console.log(`Generated static params for ${categories.length} categories`);
+
+    return categories.map((cat) => ({
+      categoryId: cat.documentId,
+    }));
+  } catch (error) {
+    console.warn("Failed to fetch categories for static generation:", error);
+    // Return empty array - pages will be generated on-demand
+    return [];
+  }
 }
 
 export default async function CatalogPage({
