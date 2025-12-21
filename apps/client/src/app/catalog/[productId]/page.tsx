@@ -72,6 +72,7 @@ export async function generateMetadata({
 }
 
 export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
   const response = await getProducts({ page: "1", pageSize: "25" });

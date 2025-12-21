@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  strapi:
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile
+    restart: always
+    depends_on:
+      - postgres
+    env_file:
+      - ./apps/server/.env.production
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi
+    volumes:
+      # persist uploaded media
+      - ./uploads:/app/apps/server/public/uploads
+    ports:
+      - "1337:1337"
+
+  nextjs:
+    build:
+      context: .
+      dockerfile: apps/client/Dockerfile
+    restart: always
+    env_file:
+      - ./apps/client/.env.production
+    ports:
+      - "3000:3000"
+    depends_on:
+      - strapi
+
+volumes:
+  pgdata:
