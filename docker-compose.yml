@@ -33,10 +33,9 @@ services:
       - ./apps/client/.env.production
     ports:
       - "3000:3000"
-    restart: unless-stopped  
+
     depends_on:
       - strapi
-    
 
 volumes:
   pgdata:
